@@ -4,7 +4,7 @@
   
 define("TOKEN", "dlwebs");
 
-//$wechatObj = new wechatCallbackapiTest();
+$wechatObj = new wechatCallbackapiTest();
  
 if (!isset($_GET['echostr'])) {
     $wechatObj->responseMsg();
