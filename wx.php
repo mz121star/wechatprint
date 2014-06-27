@@ -3,8 +3,7 @@
    
   
 define("TOKEN", "dlwebs");
-echo $_GET['echostr'];
-exit;
+
 $wechatObj = new wechatCallbackapiTest();
  
 if (!isset($_GET['echostr'])) {
@@ -18,12 +17,13 @@ class wechatCallbackapiTest
     //验证消息
     public function valid()
     {
-        $echoStr = $_GET["echostr"];
-		 echo $echoStr;
-        if($this->checkSignature()){
-            echo $echoStr;
-            exit;
-        }
+         $echoStr = $_GET["echostr"];
+
+               //valid signature , option
+               if($this->checkSignature()){
+               	echo $echoStr;
+               	exit;
+               }
     }
 
     //检查签名
