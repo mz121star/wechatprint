@@ -82,7 +82,7 @@
 
 public function getPicByUID($wexinid){
            $querystr="select picurl from pics where uid='".$wexinid."'";
-           $result=$this->conn->ExecuteSQL($selectUser);
+           $result=$this->conn->ExecuteSQL($querystr);
            $result["picurl"];
 }
 	  public function inserPic($wexinid,$picurl){
