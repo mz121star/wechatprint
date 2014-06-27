@@ -16,10 +16,10 @@
 
 
 	 function __construct() {
-		$this->mysql_server_name="10.0.16.16:4066"; //数据库服务器名称 
-		$this->mysql_username="4Co5f4iW"; // 连接数据库用户名 
-		$this->mysql_password="oFedEWYUQIoH"; // 连接数据库密码 
-		$this->mysql_database="mz121star_mysql_in8b9io9"; // 数据库的名字
+		$this->mysql_server_name="localhost"; //数据库服务器名称
+		$this->mysql_username="root"; // 连接数据库用户名
+		$this->mysql_password="8ecba89b81"; // 连接数据库密码
+		$this->mysql_database="wxprint2"; // 数据库的名字
         $this->conn = new MySQL( $this->mysql_database,  $this->mysql_username,  $this->mysql_password, $this->mysql_server_name);
 		}
 
@@ -78,6 +78,21 @@
 		     $insertUser="insert into users   values ('".$WeiXinId."','".$phone."','".$name."','url')"  ;
 			$result=$this->conn->ExecuteSQL($insertUser);
 			return $result;
+	  }
+
+	  public function inserPic($wexinid,$picurl){
+	     $querystr="select * from pics where uid='".$wexinid."'";
+	     $insertstr="insert into pics   values ('".$WeiXinId."','".$picurl."')"  ;
+	     $updatestr="update pics SET picurl = '".$picurl."' WHERE uid='".$wexinid."'";;
+         $result=$this->conn->ExecuteSQL($querystr);
+
+                        if(count($result)>0){
+                                 //更新
+                               $this->conn->ExecuteSQL($updatestr);
+                        } else{
+                                //插入
+                             $this->conn->ExecuteSQL($insertstr);
+                        }
 	  }
       //用户上传图像，并且绑定
 	  public function saveUserPic($fromuser,$picurl)
