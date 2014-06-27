@@ -17,8 +17,8 @@
   <body>
 
     <?php
-	        include_once('wechatHelper.php');
-            $wcHelper=new wechatHelper();
+	        // include_once('wechatHelper.php');
+            // $wcHelper=new wechatHelper();
             $data = '{
                 "button":[
                 {
