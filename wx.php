@@ -3,7 +3,8 @@
    
   
 define("TOKEN", "dlwebs");
-
+echo $_GET['echostr'];
+exit;
 $wechatObj = new wechatCallbackapiTest();
  
 if (!isset($_GET['echostr'])) {
