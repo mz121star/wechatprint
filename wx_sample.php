@@ -6,7 +6,13 @@
 //define your token
 define("TOKEN", "dlwebs");
 $wechatObj = new wechatCallbackapiTest();
-$wechatObj->valid();
+//$wechatObj->valid();
+
+if (!isset($_GET['echostr'])) {
+    $wechatObj->responseMsg();
+}else{
+    $wechatObj->valid();
+}
 
 class wechatCallbackapiTest
 {
