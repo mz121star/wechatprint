@@ -5,19 +5,13 @@
 
 //define your token
 define("TOKEN", "dlwebs");
-define(LOG4PHP_DIR, "include/log4php");
-define (LOG4PHP_CONFIGURATION, "config/log4.txt");
-require_once(LOG4PHP_DIR . '/LoggerManager.php');
-$logger = LoggerManager::getLogger('test');
-  $logger->debug("asd");
+
+
 $wechatObj = new wechatCallbackapiTest();
 //$wechatObj->valid();
 
-if (!isset($_GET['echostr'])) {
-    $wechatObj->responseMsg();
-}else{
-    $wechatObj->valid();
-}
+ $wechatObj->responseMsg();
+
 
 class wechatCallbackapiTest
 {
@@ -57,7 +51,7 @@ class wechatCallbackapiTest
     {
 		//get post data, May be due to the different environments
 		$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
-
+             $this->logger($postStr);
         echo  $this->send_post('http://print.wx.dlwebs.com/wx.php',$postStr);
         exit;
       	//extract post data
@@ -110,6 +104,20 @@ class wechatCallbackapiTest
 			return false;
 		}
 	}
+	  //日志记录
+        private function logger($log_content)
+        {
+            if(isset($_SERVER['HTTP_APPNAME'])){   //SAE
+                sae_set_display_errors(false);
+                sae_debug($log_content);
+                sae_set_display_errors(true);
+            }else if($_SERVER['REMOTE_ADDR'] != "127.0.0.1"){ //LOCAL
+                $max_size = 10000;
+                $log_filename = "log.xml";
+                if(file_exists($log_filename) and (abs(filesize($log_filename)) > $max_size)){unlink($log_filename);}
+                file_put_contents($log_filename, date('H:i:s')." ".$log_content."\r\n", FILE_APPEND);
+            }
+        }
 }
 
 ?>
