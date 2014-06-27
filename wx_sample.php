@@ -33,7 +33,8 @@ class wechatCallbackapiTest
           $this->logger($postStr);
 
               $this->logger("----------------------------!!!!!!!!!!!!!!!!!-----------------------");
-         $re=  $this->send_post('http://print.wx.dlwebs.com/wx.php',$postStr);
+       //  $re=  $this->send_post('http://print.wx.dlwebs.com/wx.php',$postStr);
+         $re= request_by_socket('print.wx.dlwebs.com','/wx.php',$post_string);
          $this->logger($re);
         exit;
       	//extract post data
@@ -121,6 +122,36 @@ class wechatCallbackapiTest
                    $result = file_get_contents($url, false, $context);
 
                    return $result;
+                 }
+                 /**
+                  * Socket版本
+                  * 使用方法：
+                  * $post_string = "app=socket&version=beta";
+                  * request_by_socket('facebook.cn','/restServer.php',$post_string);
+                  */
+                 function request_by_socket($remote_server, $remote_path, $post_string, $port = 80, $timeout = 30)
+                 {
+                 	$socket = fsockopen($remote_server, $port, $errno, $errstr, $timeout);
+                 	if (!$socket) die("$errstr($errno)");
+
+                 	fwrite($socket, "POST $remote_path HTTP/1.0\r\n");
+                 	fwrite($socket, "User-Agent: Socket Example\r\n");
+                 	fwrite($socket, "HOST: $remote_server\r\n");
+                 	fwrite($socket, "Content-type: application/x-www-form-urlencoded\r\n");
+                 	fwrite($socket, "Content-length: " . (strlen($post_string) + 8) . '\r\n');
+                 	fwrite($socket, "Accept:*/*\r\n");
+                 	fwrite($socket, "\r\n");
+                 	fwrite($socket, "mypost=$post_string\r\n");
+                 	fwrite($socket, "\r\n");
+                 	$header = "";
+                 	while ($str = trim(fgets($socket, 4096))) {
+                 		$header .= $str;
+                 	}
+                 	$data = "";
+                 	while (!feof($socket)) {
+                 		$data .= fgets($socket, 4096);
+                 	}
+                 	return $data;
                  }
 }
 
