@@ -15,7 +15,7 @@
       	<script src="js/jquery.min.js" type="text/javascript"></script>
       		<script src="js/jquery.Jcrop.js" type="text/javascript"></script>
       		<link rel="stylesheet" href="css/jquery.Jcrop.css" type="text/css" />
-      		<link rel="stylesheet" href="demo_files/demos.css" type="text/css" />
+
       		<script type="text/javascript">
 
       		jQuery(function($){
