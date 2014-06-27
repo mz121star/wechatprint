@@ -86,7 +86,7 @@
 	     $updatestr="update pics SET picurl = '".$picurl."' WHERE uid='".$wexinid."'";;
          $result=$this->conn->ExecuteSQL($querystr);
 
-                        if(count($result)>0){
+                        if(count($result)>1){
                                  //更新
                                $this->conn->ExecuteSQL($updatestr);
                         } else{
