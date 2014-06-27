@@ -64,7 +64,8 @@
 
 
                     <?php
-                       require('wechatHelper.php');
+                        require('wechatHelper.php');
+                         $wcHelper=new wechatHelper();
                         $fromuser= $_GET["id"];
                         $picurl=$wcHelper->getPicByUID($fromuser);
                     ?>
