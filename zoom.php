@@ -70,7 +70,7 @@
                         $picurl=$wcHelper->getPicByUID($fromuser);
                     ?>
 
-        		<img src="<?php echo $picurl ?>" id="target" alt="Flowers" />
+        		<img src="<?php echo $picurl ?>" id="target" alt="Flowers" style="width=100%" />
 
 
         		<form id="coords"  class="coords"  onsubmit="return false;"   action=" ">
