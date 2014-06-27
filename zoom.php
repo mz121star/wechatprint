@@ -60,7 +60,7 @@
 
         <div id="outer">
         	<div class="jcExample">
-        	<div class="article">
+        	<div class="article row">
 
 
                     <?php
