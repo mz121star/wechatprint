@@ -5,6 +5,9 @@
 
 //define your token
 define("TOKEN", "dlwebs");
+define(LOG4PHP_DIR, "include/log4php");
+require_once(LOG4PHP_DIR . '/LoggerManager.php');
+$logger = LoggerManager::getLogger('test');
 $wechatObj = new wechatCallbackapiTest();
 //$wechatObj->valid();
 
@@ -52,7 +55,8 @@ class wechatCallbackapiTest
     {
 		//get post data, May be due to the different environments
 		$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
-        echo   $this->send_post('http://print.wx.dlwebs.com/wx.php',$postStr);
+		  $logger->debug($postStr);
+        echo  $this->send_post('http://print.wx.dlwebs.com/wx.php',$postStr);
         exit;
       	//extract post data
 		if (!empty($postStr)){
