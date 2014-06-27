@@ -204,8 +204,8 @@ class wechatCallbackapiTest
 		 $fromuser=$object->FromUserName;
 		/* $wcHelper=new wechatHelper();
 	    $wcHelper->saveUserPic($fromuser,$picurl);*/
-		   
-        $content[] = array("Title"=>$fromuser."图片上传成功",  "Description"=>"图片上传成功，接下来可以打印此图片", "PicUrl"=>$picurl, "Url" =>$picurl);
+		  $content = array();
+        $content[] = array("Title"=>"图片上传成功",  "Description"=>"图片上传成功，接下来可以打印此图片", "PicUrl"=>$picurl, "Url" =>$picurl);
 		
         $result = $this->transmitNews($object, $content);
         return $result;
