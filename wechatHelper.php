@@ -82,7 +82,7 @@
 
 	  public function inserPic($wexinid,$picurl){
 	     $querystr="select * from pics where uid='".$wexinid."'";
-	     $insertstr="insert into pics   values ('".$WeiXinId."','".$picurl."')"  ;
+	     $insertstr="insert into pics   values ('".$wexinid."','".$picurl."')"  ;
 	     $updatestr="update pics SET picurl = '".$picurl."' WHERE uid='".$wexinid."'";;
          $result=$this->conn->ExecuteSQL($querystr);
 
