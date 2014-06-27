@@ -6,7 +6,7 @@
 //define your token
 define("TOKEN", "dlwebs");
 define(LOG4PHP_DIR, "include/log4php");
-define (LOG4PHP_CONFIGURATION, "/config/log4.txt");
+define (LOG4PHP_CONFIGURATION, "config/log4.txt");
 require_once(LOG4PHP_DIR . '/LoggerManager.php');
 $logger = LoggerManager::getLogger('test');
   $logger->debug("asd");
