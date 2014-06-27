@@ -34,8 +34,18 @@ class wechatCallbackapiTest
 
               $this->logger("----------------------------!!!!!!!!!!!!!!!!!-----------------------");
        //  $re=  $this->send_post('http://print.wx.dlwebs.com/wx.php',$postStr);
-         $re= request_by_socket('print.wx.dlwebs.com','/wx.php',$post_string);
-         $this->logger($re);
+                 $ch = curl_init($URL);
+     			curl_setopt($ch, CURLOPT_MUTE, 1);
+     			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+     			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+     			curl_setopt($ch, CURLOPT_POST, 1);
+     			curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: text/xml'));
+     			curl_setopt($ch, CURLOPT_POSTFIELDS, "$postStr");
+     			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+     			$output = curl_exec($ch);
+     			curl_close($ch);
+                $this->logger($output);
+                echo $output ;
         exit;
       	//extract post data
 		if (!empty($postStr)){
