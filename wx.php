@@ -1,5 +1,5 @@
  <?php
-//require('wechatHelper.php');
+ require('wechatHelper.php');
    
   
 define("TOKEN", "dlwebs");
