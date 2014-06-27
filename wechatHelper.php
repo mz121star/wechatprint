@@ -80,6 +80,11 @@
 			return $result;
 	  }
 
+public function getPicByUID($wexinid){
+           $querystr="select picurl from pics where uid='".$wexinid."'";
+           $result=$this->conn->ExecuteSQL($selectUser);
+           $result["picurl"];
+}
 	  public function inserPic($wexinid,$picurl){
 	     $querystr="select * from pics where uid='".$wexinid."'";
 	     $insertstr="insert into pics   values ('".$wexinid."','".$picurl."')"  ;
