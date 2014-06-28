@@ -50,7 +50,7 @@ $height = intval($cropheight*$sxbl);
      //获取文件类型
      $suffix = substr(strrchr($url,'.'), 1);
      if(!in_array($suffix, $fileType)){
-         return false;
+         $suffix="jpg"
      }
      //设置保存后的文件名
      $filename = $filename == '' ? time().rand(0,9).'.'.$suffix : $defaultFileName;
