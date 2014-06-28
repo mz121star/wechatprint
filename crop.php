@@ -25,8 +25,8 @@ $height = intval($cropheight*$sxbl);
             mkdir($filepath,0655, true);
         }
         $filename = date("YmdHis",$filetime).rand(100,999).'.jpg'; //生成文件名，
-        $fp = @fopen($filepath.$filename,"w"); //以写方式打开文件
-        @fwrite($fp,$data); //
+        $fp = fopen($filepath.$filename,"w"); //以写方式打开文件
+        fwrite($fp,$data); //
         fclose($fp);//完工，哈
 
 
