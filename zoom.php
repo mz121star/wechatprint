@@ -73,8 +73,7 @@
    <div class="container">
 
 
-        <div id="outer">
-        	<div class="jcExample">
+
         	<div class="article row">
 
 
@@ -98,7 +97,6 @@
 
 
         	</div>
-        	</div>
-        	</div>
+
   </body>
 </html>
