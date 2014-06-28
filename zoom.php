@@ -1,5 +1,9 @@
 <html>
 <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <title>裁剪图片</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style type="text/css">
 .jcrop-holder { margin:auto;text-align: left; }
 .jcrop-vline, .jcrop-hline{font-size: 0; position: absolute; background: white url('http://img.jb51.net/jslib/images/Jcrop.gif') top left repeat; }
@@ -66,14 +70,14 @@ $('#cropbox').css('display','');
 img_cur_width = $('#cropbox').attr('width');
 if(act=='b' && img_cur_width<800){
 img_rewidth = img_cur_width + 50;
-if(img_rewidth>{$img_width}) img_rewidth = {$img_width};
+if(img_rewidth><?php echo $img_width ?>) img_rewidth = {$img_width};
 }
 if(act=='s' && img_cur_width>200){
 img_rewidth = img_cur_width - 50;
 if(img_rewidth<200) img_rewidth = 200;
 }
 
-sxbl = {$img_width}/img_rewidth;//放大缩小时重新计算图片缩小比例
+sxbl = <?php echo $img_width ?>/img_rewidth;//放大缩小时重新计算图片缩小比例
 $('#cropbox').attr('width',img_rewidth);
 $('#cwidth').html('当前宽度:'+img_rewidth+'px');
 $('#sxbl').val(sxbl);
@@ -83,22 +87,22 @@ $('#sxbl').val(sxbl);
 <body>
 
 <div>
-<label style="float:left;">原始宽度:{$img_width}px</label>
+<label style="float:left;">原始宽度:<?php echo $img_width ?>px</label>
 <input type="button" onclick="gf_crop_resize('b')" value="放大">
 <input type="button" onclick="gf_crop_resize('s')" value="缩小">
-<label id='cwidth' style="float:right;">当前宽度:{$width}</label>
+<label id='cwidth' style="float:right;">当前宽度:<?php echo $width ?></label>
 </div>
 
-<img src="{$picurl}" id="cropbox" width="{$width}"/>
+<img src="<?php echo $picurl ?>" id="cropbox" width="<?php echo $width ?>"/>
 
 <div id="xyxy" style="display:none">
 <label>左上X:</label><input type="text" id="x1" size="3" />
 <label>左上Y:</label><input type="text" id="y1" />
 <label>宽度:</label><input type="text" id="cropwidth" />
 <label>高度:</label><input type="text" id="cropheight" />
-<input type="hidden" id="sxbl" value="{$sxbl}"><!--当前图片缩小比例，php中用于计算裁剪-->
-<input type="hidden" id="input" value="{$input}">
-<input type="hidden" id="preview" value="{$preview}">
+<input type="hidden" id="sxbl" value="<?php echo$sxbl ?>"><!--当前图片缩小比例，php中用于计算裁剪-->
+<input type="hidden" id="input" value="<?php echo$input ?>">
+<input type="hidden" id="preview" value="<?php echo$preview ?>">
 </div>
 <div>
 <input type="button" onclick="gf_crop_init()" value="自由裁剪">
