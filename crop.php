@@ -44,6 +44,7 @@ $height = intval($cropheight*$sxbl);
 
  function getImage($url, $filename='', $dirName, $fileType, $type=0)
  {
+    echo $dirName;
      if($url == ''){return false;}
      //获取文件原文件名
      $defaultFileName = basename($url);
