@@ -28,7 +28,7 @@ $height = intval($cropheight*$sxbl);
         fwrite($fp,$data); //
         fclose($fp);//完工，哈        */
 
-
+ $filepath = $_SERVER['DOCUMENT_ROOT']."public/";
  echo getImage($src, '',$filepath , array('jpg', 'gif'));
  /**
   *php实现下载远程图片到本地
@@ -44,7 +44,7 @@ $height = intval($cropheight*$sxbl);
 
  function getImage($url, $filename='', $dirName, $fileType, $type=0)
  {
-    echo $dirName;
+
      if($url == ''){return false;}
      //获取文件原文件名
      $defaultFileName = basename($url);
