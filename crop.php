@@ -1,4 +1,6 @@
 <?php
+ error_reporting = E_ALL ;
+ ini_set('display_errors', 1);
 //$_GET数据：原始图片url($src)、选区左上坐标($x/$y)、选区宽高($cropwidth/$cropheight)、原图缩小比例($sxbl)
 $src=$_POST["src"];
 $x=$_POST["x"];
@@ -90,7 +92,7 @@ $y = intval($y*$sxbl);
 $width = intval($cropwidth*$sxbl);
 $height = intval($cropheight*$sxbl);
 
-$filepath = $_SERVER['DOCUMENT_ROOT']."/uploads/";//图片保存的路径目录
+$filepath = $_SERVER['DOCUMENT_ROOT']."/uploads";//图片保存的路径目录
 $savepic=downloadImage($src,$filepath);
 
 
