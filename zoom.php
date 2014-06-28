@@ -70,7 +70,7 @@ $('#cropbox').css('display','');
 img_cur_width = $('#cropbox').attr('width');
 if(act=='b' && img_cur_width<800){
 img_rewidth = img_cur_width + 50;
-if(img_rewidth><?php echo $img_width ?>) img_rewidth = {$img_width};
+if(img_rewidth><?php echo $img_width ?>) img_rewidth = <?php echo $img_width ?>;
 }
 if(act=='s' && img_cur_width>200){
 img_rewidth = img_cur_width - 50;
