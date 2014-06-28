@@ -12,6 +12,13 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
                               <?php
+
+
+                                require('wechatHelper.php');
+                                 $wcHelper=new wechatHelper();
+                                $fromuser= $_GET["id"];
+                                $picurl=$wcHelper->getPicByUID($fromuser);
+
                               //获取图片原始宽高，计算缩小比例
                               list($img_width, $img_height, $type, $attr) = getimagesize($picurl);
                               $sxbl = 1;
@@ -71,12 +78,6 @@
         	<div class="article row">
 
 
-                    <?php
-                        require('wechatHelper.php');
-                         $wcHelper=new wechatHelper();
-                        $fromuser= $_GET["id"];
-                        $picurl=$wcHelper->getPicByUID($fromuser);
-                    ?>
 
         		<img src="<?php echo $picurl ?>" id="target" alt="Flowers"  width="{$width}" />
 
