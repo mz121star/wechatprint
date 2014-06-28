@@ -1,102 +1,109 @@
- <?php
- //error_reporting = E_ALL & ~E_DEPRECATED;
- ini_set('display_errors', 1);
- ?>
-<!DOCTYPE html>
 <html>
-  <head>
-     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-
-    <title>裁剪图片</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-                              <?php
-
-
-                                require('wechatHelper.php');
+<head>
+<style type="text/css">
+.jcrop-holder { margin:auto;text-align: left; }
+.jcrop-vline, .jcrop-hline{font-size: 0; position: absolute; background: white url('http://img.jb51.net/jslib/images/Jcrop.gif') top left repeat; }
+.jcrop-vline { height: 100%; width: 1px !important; }
+.jcrop-hline { width: 100%; height: 1px !important; }
+.jcrop-handle { font-size: 1px; width: 7px !important; height: 7px !important; border: 1px #eee solid; background-color: #333; *width: 9px; *height: 9px; }
+.jcrop-tracker { width: 100%; height: 100%; }
+.custom .jcrop-vline,.custom .jcrop-hline{ background: yellow; }
+.custom .jcrop-handle{ border-color: black; background-color: #C7BB00; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
+.xyxy{margin:5px auto;width:100%}
+.xyxy input{margin-right:10px;width:30px;height:13px;border:0px;box-shadow:0px 0px 0px;}
+.bili{margin:5px auto;width:100%}
+.bili input{margin:auto 10px;}
+</style>
+<?php
+      require('wechatHelper.php');
                                  $wcHelper=new wechatHelper();
                                 $fromuser= $_GET["id"];
                                 $picurl=$wcHelper->getPicByUID($fromuser);
-
-                              //获取图片原始宽高，计算缩小比例
-                              list($img_width, $img_height, $type, $attr) = getimagesize($picurl);
-                              $sxbl = 1;
-                              if($img_width>500){
-                              $sxbl = floatval($img_width/500);
-                              $width = 500;
-                              }
-                              ?>
-      	<script src="js/jquery.min.js" type="text/javascript"></script>
+//获取图片原始宽高，计算缩小比例
+list($img_width, $img_height, $type, $attr) = getimagesize($picurl);
+$sxbl = 1;
+if($img_width>500){
+$sxbl = floatval($img_width/500);
+$width = 500;
+}
+?>
+	<script src="js/jquery.min.js" type="text/javascript"></script>
       		<script src="js/jquery.Jcrop.js" type="text/javascript"></script>
       		<link rel="stylesheet" href="css/jquery.Jcrop.css" type="text/css" />
+<script language="Javascript">
+//初始化拉选事件
+function gf_crop_init(w,h){
+$('.jcrop-holder').remove();
+$('#cropbox').css('display','');
+var api = $.Jcrop("#cropbox");
 
-      		<script type="text/javascript">
+if(w=='' || h==''){
+wh='';
+w=100;
+h=100;
+}else{
+wh = w/h;
+}
+api.setOptions({aspectRatio: wh,allowResize:true,onChange:showCoords,onSelect:showCoords});//设置相应配置
+api.setSelect([0,0,w,h]); //设置选中区域
 
-      		jQuery(function($){
+}
+//选区位置坐标及宽高
+function showCoords(c) {
+$("#xyxy").css('display','');
+$("#x1").val(c.x); //得到选中区域左上角横坐标
+$("#y1").val(c.y); //得到选中区域左上角纵坐标
+//$("#x2").val(c.x2); //得到选中区域右下角横坐标
+//$("#y2").val(c.y2); //得到选中区域右下角纵坐标
+$("#cropwidth").val(c.w); //得到选中区域的宽度
+$("#cropheight").val(c.h); //得到选中区域的高度
+}
+//放大或缩小图片以方便裁剪出合适图片
+function gf_crop_resize(act){
+$('.jcrop-holder').remove();
+$('#cropbox').css('display','');
 
-            $('#target').Jcrop({
-              onChange:   showCoords,
-              onSelect:   showCoords,
-              onRelease:  clearCoords
-            });
+img_cur_width = $('#cropbox').attr('width');
+if(act=='b' && img_cur_width<800){
+img_rewidth = img_cur_width + 50;
+if(img_rewidth>{$img_width}) img_rewidth = {$img_width};
+}
+if(act=='s' && img_cur_width>200){
+img_rewidth = img_cur_width - 50;
+if(img_rewidth<200) img_rewidth = 200;
+}
 
-          });
+sxbl = {$img_width}/img_rewidth;//放大缩小时重新计算图片缩小比例
+$('#cropbox').attr('width',img_rewidth);
+$('#cwidth').html('当前宽度:'+img_rewidth+'px');
+$('#sxbl').val(sxbl);
+}
+</script>
+</head>
+<body>
 
-          // Simple event handler, called from onChange and onSelect
-          // event handlers, as per the Jcrop invocation above
-          function showCoords(c)
-          {
-            $('#x1').val(c.x);
-            $('#y1').val(c.y);
-            $('#x2').val(c.x2);
-            $('#y2').val(c.y2);
-            $('#w').val(c.w);
-            $('#h').val(c.h);
-          };
+<div>
+<label style="float:left;">原始宽度:{$img_width}px</label>
+<input type="button" onclick="gf_crop_resize('b')" value="放大">
+<input type="button" onclick="gf_crop_resize('s')" value="缩小">
+<label id='cwidth' style="float:right;">当前宽度:{$width}</label>
+</div>
 
-          function clearCoords()
-          {
-            $('#coords input').val('');
-            $('#h').css({color:'red'});
-            window.setTimeout(function(){
-              $('#h').css({color:'inherit'});
-            },500);
-          };
+<img src="{$picurl}" id="cropbox" width="{$width}"/>
 
-      		</script>
-  </head>
-  <body>
-
-
-
-   <div class="container">
-
-
-
-        	<div class="article row">
-
-
-
-        		<img src="<?php echo $picurl ?>" id="target" alt="Flowers"  width="<?php echo  $width ?>" />
-
-
-        		<form id="coords"  class="coords"  onsubmit="return false;"   action=" ">
-
-              <div style="display:none">
-        			<label>X1 <input type="text" size="4" id="x1" name="x1" /></label>
-        			<label>Y1 <input type="text" size="4" id="y1" name="y1" /></label>
-        			<label>X2 <input type="text" size="4" id="x2" name="x2" /></label>
-        			<label>Y2 <input type="text" size="4" id="y2" name="y2" /></label>
-        			<label>W <input type="text" size="4" id="w" name="w" /></label>
-        			<label>H <input type="text" size="4" id="h" name="h" /></label>
-              </div>
-        		</form>
-
-
-
-
-        	</div>
-
-  </body>
+<div id="xyxy" style="display:none">
+<label>左上X:</label><input type="text" id="x1" size="3" />
+<label>左上Y:</label><input type="text" id="y1" />
+<label>宽度:</label><input type="text" id="cropwidth" />
+<label>高度:</label><input type="text" id="cropheight" />
+<input type="hidden" id="sxbl" value="{$sxbl}"><!--当前图片缩小比例，php中用于计算裁剪-->
+<input type="hidden" id="input" value="{$input}">
+<input type="hidden" id="preview" value="{$preview}">
+</div>
+<div>
+<input type="button" onclick="gf_crop_init()" value="自由裁剪">
+<input type="button" onclick="gf_crop_init('160','120')" value="4:3">
+<input type="button" onclick="gf_crop_init('120','180')" value="2:3">
+</div>
+</body>
 </html>
