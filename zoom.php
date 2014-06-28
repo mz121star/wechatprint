@@ -83,6 +83,9 @@ $('#cropbox').attr('width',img_rewidth);
 $('#cwidth').html('当前宽度:'+img_rewidth+'px');
 $('#sxbl').val(sxbl);
 }
+$(function(){
+gf_crop_init('160','120');
+})
 </script>
 </head>
 <body>
