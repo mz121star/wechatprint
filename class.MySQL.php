@@ -67,7 +67,7 @@ class MySQL {
 		if($persistant){
 			$this->databaseLink = mysql_pconnect($this->hostname, $this->username, $this->password);
 		}else{
-			$this->databaseLink = mysqli_connect($this->hostname, $this->username, $this->password);
+			$this->databaseLink = mysql_connect($this->hostname, $this->username, $this->password);
 		}
 		
 		if(!$this->databaseLink){
