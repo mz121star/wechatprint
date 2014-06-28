@@ -101,13 +101,13 @@ gf_crop_init('160','120');
 
 <div id="xyxy" style="display:none">
 <form name="cropform" id="cropform" >
-<label>左上X:</label><input type="text" id="x1" size="3" />
-<label>左上Y:</label><input type="text" id="y1" />
-<label>宽度:</label><input type="text" id="cropwidth" />
-<label>高度:</label><input type="text" id="cropheight" />
-<input type="hidden" id="sxbl" value="<?php echo$sxbl ?>"><!--当前图片缩小比例，php中用于计算裁剪-->
-<input type="hidden" id="src" value="<?php echo $picurl ?>"
-<input type="hidden" id="input" value="<?php echo$input ?>">
+<label>左上X:</label><input type="text"   name="x1" id="x1" size="3" />
+<label>左上Y:</label><input type="text" id="y1"  name="y1" />
+<label>宽度:</label><input type="text" id="cropwidth"  name="cropwidth"/>
+<label>高度:</label><input type="text" id="cropheight" name="cropheight" />
+<input type="hidden" name="sxbl"  id="sxbl" value="<?php echo$sxbl ?>"><!--当前图片缩小比例，php中用于计算裁剪-->
+<input type="hidden" name="src"  id="src" value="<?php echo $picurl ?>"
+<input type="hidden" name="input"   id="input" value="<?php echo$input ?>">
 <input type="hidden" id="preview" value="<?php echo$preview ?>">
 <input type="button" id="ok"  value="确定"/>
 </form>
