@@ -11,7 +11,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-
+                              <?php
+                              //获取图片原始宽高，计算缩小比例
+                              list($img_width, $img_height, $type, $attr) = getimagesize($picurl);
+                              $sxbl = 1;
+                              if($img_width>500){
+                              $sxbl = floatval($img_width/500);
+                              $width = 500;
+                              }
+                              ?>
       	<script src="js/jquery.min.js" type="text/javascript"></script>
       		<script src="js/jquery.Jcrop.js" type="text/javascript"></script>
       		<link rel="stylesheet" href="css/jquery.Jcrop.css" type="text/css" />
@@ -70,7 +78,7 @@
                         $picurl=$wcHelper->getPicByUID($fromuser);
                     ?>
 
-        		<img src="<?php echo $picurl ?>" id="target" alt="Flowers" style="width=100%" />
+        		<img src="<?php echo $picurl ?>" id="target" alt="Flowers"  width="{$width}" />
 
 
         		<form id="coords"  class="coords"  onsubmit="return false;"   action=" ">
