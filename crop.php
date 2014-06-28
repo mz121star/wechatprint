@@ -71,7 +71,7 @@ $height = intval($cropheight*$sxbl);
          ob_end_clean();
      }
      //设置文件保存路径
-     $dirName = $dirName.'/'.date('Y', time()).'/'.date('m', time()).'/'.date('d',time()).'/';
+     $dirName = $dirName;
      if(!file_exists($dirName)){
          mkdir($dirName, 0777, true);
      }
