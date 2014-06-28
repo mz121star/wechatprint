@@ -79,7 +79,7 @@
 
 
 
-        		<img src="<?php echo $picurl ?>" id="target" alt="Flowers"  width="<?echo  $width ?>" />
+        		<img src="<?php echo $picurl ?>" id="target" alt="Flowers"  width="<?php echo  $width ?>" />
 
 
         		<form id="coords"  class="coords"  onsubmit="return false;"   action=" ">
