@@ -24,11 +24,12 @@
                                 $fromuser= $_GET["id"];
                                 $picurl=$wcHelper->getPicByUID($fromuser);
 //获取图片原始宽高，计算缩小比例
+var screenWidth=document.body.clientWidth
 list($img_width, $img_height, $type, $attr) = getimagesize($picurl);
 $sxbl = 1;
-if($img_width>500){
-$sxbl = floatval($img_width/500);
-$width = 500;
+if($img_width>screenWidth){
+$sxbl = floatval($img_width/screenWidth);
+$width = document.body.clientWidth;
 }
 ?>
 	<script src="js/jquery.min.js" type="text/javascript"></script>
