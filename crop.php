@@ -29,7 +29,7 @@ $height = intval($cropheight*$sxbl);
         fclose($fp);//完工，哈        */
 
 
- echo getImage('http://img.wan.renren.com/images/2013/0430/1367294093164.jpg', '',$filepath , array('jpg', 'gif'));
+ echo getImage($src, '',$filepath , array('jpg', 'gif'));
  /**
   *php实现下载远程图片到本地
   *@param $url       string      远程文件地址
@@ -77,6 +77,7 @@ $height = intval($cropheight*$sxbl);
      }
      //保存文件
      $res = fopen($dirName.$filename,'a');
+     echo $res;
      fwrite($res,$file);
      fclose($res);
      return "{'fileName':$filename, 'saveDir':$dirName}";
