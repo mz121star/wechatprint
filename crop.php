@@ -19,10 +19,10 @@ $height = intval($cropheight*$sxbl);
 
 
          $data = file_get_contents($src); // 读文件内容
-
+          echo $data;
         $filepath = $_SERVER['DOCUMENT_ROOT']."public/";//图片保存的路径目录
         if(!is_dir($filepath)){
-            mkdir($filepath,0655, true);
+            mkdir($filepath,777, true);
         }
         $filename = date("YmdHis",$filetime).rand(100,999).'.jpg'; //生成文件名，
         $fp = fopen($filepath.$filename,"w"); //以写方式打开文件
