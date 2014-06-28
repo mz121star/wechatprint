@@ -18,6 +18,7 @@ $height = intval($cropheight*$sxbl);
 
 
          $data = file_get_contents($src); // 读文件内容
+         echo $src;
          $filetime = time(); //得到时间戳
          $filepath = $_SERVER['DOCUMENT_ROOT']."/uploads/";//图片保存的路径目录
          echo $filepath;
