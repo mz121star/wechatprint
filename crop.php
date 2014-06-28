@@ -28,7 +28,7 @@ $height = intval($cropheight*$sxbl);
         fwrite($fp,$data); //
         fclose($fp);//完工，哈        */
 
- $filepath = $_SERVER['DOCUMENT_ROOT']."public/";
+ $filepath = $_SERVER['DOCUMENT_ROOT']."/public/";
  echo getImage($src, '',$filepath , array('jpg', 'gif'));
  /**
   *php实现下载远程图片到本地
