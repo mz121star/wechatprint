@@ -100,18 +100,36 @@ gf_crop_init('160','120');
 <img src="<?php echo $picurl ?>" id="cropbox" width="<?php echo $width ?>"/>
 
 <div id="xyxy" style="display:none">
+<form name="cropform" id="cropform" >
 <label>左上X:</label><input type="text" id="x1" size="3" />
 <label>左上Y:</label><input type="text" id="y1" />
 <label>宽度:</label><input type="text" id="cropwidth" />
 <label>高度:</label><input type="text" id="cropheight" />
 <input type="hidden" id="sxbl" value="<?php echo$sxbl ?>"><!--当前图片缩小比例，php中用于计算裁剪-->
+<input type="hidden" id="src" value="<?php echo $picurl ?>"
 <input type="hidden" id="input" value="<?php echo$input ?>">
 <input type="hidden" id="preview" value="<?php echo$preview ?>">
+<input type="button" id="ok"  value="确定"/>
+</form>
 </div>
 <div>
 <input type="button" onclick="gf_crop_init()" value="自由裁剪">
 <input type="button" onclick="gf_crop_init('160','120')" value="4:3">
 <input type="button" onclick="gf_crop_init('120','180')" value="2:3">
 </div>
+<script>
+$(function(){
+$("#ok").on("click",function(){
+  $.ajax({
+                  cache: true,
+                  type: "POST",
+                  url:"crop.php",
+                  data:$('#cropform').serialize(),// 你的formid
+                  async: true,
+
+              }).success(function(d){alert(d);})
+})
+})
+</script>
 </body>
 </html>
