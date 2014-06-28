@@ -1,3 +1,3 @@
 <?php
-require_once(‘abc.php’);
+require_once('abc.php');
 ?>
