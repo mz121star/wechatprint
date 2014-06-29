@@ -11,12 +11,12 @@
 //获取图片原始宽高，计算缩小比例
 $filename = date("YmdHis",$filetime).rand(100,999).'.jpg';
 $filepath = $_SERVER['DOCUMENT_ROOT']."/uploads/";
-echo "执行getImage:".date("Y-m-d H:i:s",time())
+echo "执行getImage:".date("Y-m-d H:i:s",time()) ;
 $imagename=imageHelper::getImage($picurl,'',$filepath , array('jpg', 'gif'));
-echo "执行完getImage:".date("Y-m-d H:i:s",time())
-echo "执行getimagesize:".date("Y-m-d H:i:s",time())
+echo "执行完getImage:".date("Y-m-d H:i:s",time()) ;
+echo "执行getimagesize:".date("Y-m-d H:i:s",time()) ;
 list($img_width, $img_height, $type, $attr) = getimagesize($filepath.$imagename);
-echo "执行完getimagesize:".date("Y-m-d H:i:s",time())
+echo "执行完getimagesize:".date("Y-m-d H:i:s",time());
 $sxbl = 1;
 if($img_width>300){
 $sxbl = floatval($img_width/300);
