@@ -4,22 +4,22 @@
                            require('wechatHelper.php');
                             $wcHelper=new wechatHelper();
                             $fromuser= $_GET["id"];
-                            echo "执行getPicByUID:".date("Y-m-d H:i:s",time());
+                          //  echo "执行getPicByUID:".date("Y-m-d H:i:s",time());
                              $picurl=$wcHelper->getPicByUID($fromuser);
         $picurl=$_GET["pic"];
-                                 echo "执行完getPicByUID:".date("Y-m-d H:i:s",time());
+                                // echo "执行完getPicByUID:".date("Y-m-d H:i:s",time());
 
 //获取图片原始宽高，计算缩小比例
 $filename = date("YmdHis",$filetime).rand(100,999).'.jpg';
 $filepath = $_SERVER['DOCUMENT_ROOT']."/uploads/";
-echo "执行getImage:".date("Y-m-d H:i:s",time()) ;
-//$imagename=imageHelper::getImage($picurl,'',$filepath , array('jpg', 'gif'));
-$imagename=imageHelper::grabImage($picurl,'',$filepath) ;
+//echo "执行getImage:".date("Y-m-d H:i:s",time()) ;
+$imagename=imageHelper::getImage($picurl,'',$filepath , array('jpg', 'gif'));
+//$imagename=imageHelper::grabImage($picurl,'',$filepath) ;
 
-echo "执行完getImage:".date("Y-m-d H:i:s",time()) ;
-echo "执行getimagesize:".date("Y-m-d H:i:s",time()) ;
+//echo "执行完getImage:".date("Y-m-d H:i:s",time()) ;
+//echo "执行getimagesize:".date("Y-m-d H:i:s",time()) ;
 list($img_width, $img_height, $type, $attr) = getimagesize($filepath.$imagename);
-echo "执行完getimagesize:".date("Y-m-d H:i:s",time());
+//echo "执行完getimagesize:".date("Y-m-d H:i:s",time());
 $sxbl = 1;
 if($img_width>300){
 $sxbl = floatval($img_width/300);
@@ -55,7 +55,7 @@ $width = 300;
 <input type="hidden" id="cropwidth"  name="cropwidth"/>
 <input type="hidden" id="cropheight" name="cropheight" />
 <input type="hidden" name="sxbl"  id="sxbl" value="<?php echo$sxbl ?>" /><!--当前图片缩小比例，php中用于计算裁剪-->
-<input type="hidden" name="src"  id="src" value="<?php echo $picurl ?>" />
+<input type="hidden" name="src"  id="src" value="<?php echo $filepath.$imagename ?>" />
 <input type="hidden" name="input"   id="input" value="<?php echo$input ?>" />
 <input type="hidden" id="preview" value="<?php echo$preview ?>" />
 <input type="button" class="btn btn-success" id="saveBtn"  value="确定"/>
