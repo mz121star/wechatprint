@@ -152,7 +152,7 @@ $imagename=getImage($src, '',$filepath , array('jpg', 'gif'));
      }
      //保存文件
      $res = fopen($dirName.$filename,'a');
-     echo $res;
+
      fwrite($res,$file);
      fclose($res);
      return  $filename ;
