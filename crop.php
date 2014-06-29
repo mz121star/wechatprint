@@ -19,7 +19,7 @@ $height = intval($cropheight*$sxbl);
 
 
         /** $data = file_get_contents($src); // 读文件内容
-        $filepath = $_SERVER['DOCUMENT_ROOT']."public/";//图片保存的路径目录
+        $filepath = $_SERVER['DOCUMENT_ROOT']."uploads/";//图片保存的路径目录
         if(!is_dir($filepath)){
             mkdir($filepath,777, true);
         }
@@ -96,8 +96,8 @@ $imagename=getImage($src, '',$filepath , array('jpg', 'gif'));
    	// 缩放
    	imagecopyresampled($target_image, $cropped_image, 0, 0, 0, 0, $target_width, $target_height, $cropped_width, $cropped_height);
 
-   	header('Content-Type: image/jpeg');
-   	imagejpeg($target_image);
+   	//header('Content-Type: image/jpeg');
+   	imagejpeg($target_image, $_SERVER['DOCUMENT_ROOT']."/uploads/".date("YmdHis",$filetime).rand(100,999).'.jpg');
    	imagedestroy($source_image);
    	imagedestroy($target_image);
    	imagedestroy($cropped_image);
