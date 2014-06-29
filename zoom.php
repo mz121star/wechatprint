@@ -101,16 +101,17 @@ gf_crop_init('160','120');
 
 <div id="xyxy" style="display:none">
 <form name="cropform" id="cropform" >
-<label>左上X:</label><input type="hidden"   name="x1" id="x1" size="3" />
-<label>左上Y:</label><input type="hidden" id="y1"  name="y1" />
-<label>宽度:</label><input type="hidden" id="cropwidth"  name="cropwidth"/>
-<label>高度:</label><input type="hidden" id="cropheight" name="cropheight" />
+<input type="hidden"   name="x1" id="x1" size="3" />
+<input type="hidden" id="y1"  name="y1" />
+<input type="hidden" id="cropwidth"  name="cropwidth"/>
+<input type="hidden" id="cropheight" name="cropheight" />
 <input type="hidden" name="sxbl"  id="sxbl" value="<?php echo$sxbl ?>"><!--当前图片缩小比例，php中用于计算裁剪-->
 <input type="hidden" name="src"  id="src" value="<?php echo $picurl ?>"
 <input type="hidden" name="input"   id="input" value="<?php echo$input ?>">
 <input type="hidden" id="preview" value="<?php echo$preview ?>">
 <input type="button" id="ok"  value="确定"/>
 </form>
+<span id="status"></span>
 </div>
 <div style="display:none">
 <input type="button" onclick="gf_crop_init()" value="自由裁剪">
@@ -120,6 +121,7 @@ gf_crop_init('160','120');
 <script>
 $(function(){
 $("#ok").on("click",function(){
+    $("#status").html("图片处理中..") ;
   $.ajax({
                   cache: true,
                   type: "POST",
@@ -127,7 +129,10 @@ $("#ok").on("click",function(){
                   data:$('#cropform').serialize(),// 你的formid
                   async: true,
 
-              }).success(function(d){alert(d);})
+              }).success(function(d){
+                 alert(d);
+                 $("#status").html("最终图片如下<img width="300" src='/uploads/"+d+"/>") ;
+               })
 })
 })
 </script>

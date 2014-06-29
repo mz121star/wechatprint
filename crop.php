@@ -38,9 +38,10 @@ $height = intval($cropheight*$sxbl);
         fclose($fp);//完工，哈        */
 
  $filepath = $_SERVER['DOCUMENT_ROOT']."/uploads/";
-$imagename=getImage($src, '',$filepath , array('jpg', 'gif'));
+  $imagename=getImage($src, '',$filepath , array('jpg', 'gif'));
 
- imagecropper($filepath,$imagename,$imgArray,800,600);
+  $finalimage= imagecropper($filepath,$imagename,$imgArray,800,600);
+  echo $finalimage;
 
 
 
@@ -114,7 +115,9 @@ $imagename=getImage($src, '',$filepath , array('jpg', 'gif'));
    	imagecopyresampled($target_image, $cropped_image, 0, 0, 0, 0, $target_width, $target_height, $imgArray["cropwidth"], $imgArray["cropheight"]);
 
    	//header('Content-Type: image/jpeg');
-   	imagejpeg($target_image, $_SERVER['DOCUMENT_ROOT']."/uploads/".$source_name);
+   	$final_pic_url=$_SERVER['DOCUMENT_ROOT']."/uploads/".$source_name;
+   	imagejpeg($target_image,$final_pic_url );
+   	return  $source_name;
    	imagedestroy($source_image);
    	imagedestroy($target_image);
    	imagedestroy($cropped_image);
