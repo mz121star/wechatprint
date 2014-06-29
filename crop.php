@@ -104,7 +104,7 @@ $imagename=getImage($src, '',$filepath , array('jpg', 'gif'));
    	// 裁剪
      /**	bool imagecopy ( resource $dst_im , resource $src_im , int $dst_x , int $dst_y , int $src_x , int $src_y , int $src_w , int $src_h )
     将 src_im 图像中坐标从 src_x，src_y 开始，宽度为 src_w，高度为 src_h 的一部分拷贝到 dst_im 图像中坐标为 dst_x 和 dst_y 的位置上。  */
-    echo $imgArray["x"].$imgArray["y"].$imgArray["cropwidth"].$imgArray["cropheight"]
+    echo $imgArray["x"].$imgArray["y"].$imgArray["cropwidth"].$imgArray["cropheight"];
    	imagecopy($cropped_image, $source_image, 0, 0, $imgArray["x"], $imgArray["y"], $imgArray["cropwidth"], $imgArray["cropheight"]);
    	// 缩放
    	imagecopyresampled($target_image, $cropped_image, 0, 0, 0, 0, $target_width, $target_height, $cropped_width, $cropped_height);
