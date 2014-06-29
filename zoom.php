@@ -38,7 +38,7 @@ $width = 300;
 
 </head>
 <body>
-<div class="container" >
+<div class="container" style="min-height: 700px" >
     <div class="row">
 <div style="display:none">
 <label style="float:left;">原始宽度:<?php echo $img_width ?>px</label>
