@@ -32,7 +32,7 @@ $sxbl = floatval($img_width/300);
 $width = 300;
 }
 ?>
-	<script src="js/jquery.min.js" type="text/javascript"></script>
+      	<script src="js/jquery.min.js" type="text/javascript"></script>
       		<script src="js/jquery.Jcrop.js" type="text/javascript"></script>
       		<link rel="stylesheet" href="css/jquery.Jcrop.css" type="text/css" />
 <script language="Javascript">
@@ -90,7 +90,7 @@ gf_crop_init('160','120');
 </head>
 <body>
 
-<div>
+<div style="display:none">
 <label style="float:left;">原始宽度:<?php echo $img_width ?>px</label>
 <input type="button" onclick="gf_crop_resize('b')" value="放大">
 <input type="button" onclick="gf_crop_resize('s')" value="缩小">
@@ -101,10 +101,10 @@ gf_crop_init('160','120');
 
 <div id="xyxy" style="display:none">
 <form name="cropform" id="cropform" >
-<label>左上X:</label><input type="text"   name="x1" id="x1" size="3" />
-<label>左上Y:</label><input type="text" id="y1"  name="y1" />
-<label>宽度:</label><input type="text" id="cropwidth"  name="cropwidth"/>
-<label>高度:</label><input type="text" id="cropheight" name="cropheight" />
+<label>左上X:</label><input type="hidden"   name="x1" id="x1" size="3" />
+<label>左上Y:</label><input type="hidden" id="y1"  name="y1" />
+<label>宽度:</label><input type="hidden" id="cropwidth"  name="cropwidth"/>
+<label>高度:</label><input type="hidden" id="cropheight" name="cropheight" />
 <input type="hidden" name="sxbl"  id="sxbl" value="<?php echo$sxbl ?>"><!--当前图片缩小比例，php中用于计算裁剪-->
 <input type="hidden" name="src"  id="src" value="<?php echo $picurl ?>"
 <input type="hidden" name="input"   id="input" value="<?php echo$input ?>">
@@ -112,7 +112,7 @@ gf_crop_init('160','120');
 <input type="button" id="ok"  value="确定"/>
 </form>
 </div>
-<div>
+<div style="display:none">
 <input type="button" onclick="gf_crop_init()" value="自由裁剪">
 <input type="button" onclick="gf_crop_init('160','120')" value="4:3">
 <input type="button" onclick="gf_crop_init('120','180')" value="2:3">
