@@ -2,6 +2,32 @@
 
         class imageHelper{
 
+/**
+ * 抓取远程图片
+ *
+ * @param string $url 远程图片路径
+ * @param string $filename 本地存储文件名
+ */
+function grabImage($url, $filename = '',$dirName) {
+    if($url == '') {
+        return false; //如果 $url 为空则返回 false;
+    }
+    $ext_name = '.jpg';
+
+    if($filename == '') {
+        $filename = time().$ext_name; //以时间戳另起名
+    }
+    //开始捕获
+    ob_start();
+    readfile($url);
+    $img_data = ob_get_contents();
+    ob_end_clean();
+    $size = strlen($img_data);
+    $local_file = fopen($dirName.$filename , 'a');
+    fwrite($local_file, $img_data);
+    fclose($local_file);
+    return $filename;
+}
 
   public static  function imagecropper($source_path,$source_name,$imgArray, $target_width, $target_height)
    {
@@ -101,10 +127,11 @@ if($url == ''){return false;}
 //获取文件原文件名
 $defaultFileName = basename($url);
 //获取文件类型
-$suffix = substr(strrchr($url,'.'), 1);
-if(!in_array($suffix, $fileType)){
+//$suffix = substr(strrchr($url,'.'), 1);
+//if(!in_array($suffix, $fileType)){
+//$suffix="jpg";
+//}
 $suffix="jpg";
-}
 //设置保存后的文件名
 $filename = $filename == '' ? time().rand(0,9).'.'.$suffix : $defaultFileName;
 
@@ -137,4 +164,5 @@ return  $filename ;
 }
 
 }
+
 ?>
