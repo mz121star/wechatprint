@@ -1,13 +1,17 @@
 
 <?php
-                              //  require('wechatHelper.php');
-                              //  $wcHelper=new wechatHelper();
-                             //   $fromuser= $_GET["id"];
-                               // $picurl=$wcHelper->getPicByUID($fromuser);
+ require("imageHelper.php");
+                           require('wechatHelper.php');
+                            $wcHelper=new wechatHelper();
+                            $fromuser= $_GET["id"];
+                             $picurl=$wcHelper->getPicByUID($fromuser);
         $picurl=$_GET["pic"];
 //获取图片原始宽高，计算缩小比例
+$filename = date("YmdHis",$filetime).rand(100,999).'.jpg';
+$filepath = $_SERVER['DOCUMENT_ROOT']."/uploads/";
+$imagename=imageHelper::getImage($src,$filename,$filepath , array('jpg', 'gif'));
 
-list($img_width, $img_height, $type, $attr) = getimagesize($picurl);
+list($img_width, $img_height, $type, $attr) = getimagesize($filepath.$filename);
 $sxbl = 1;
 if($img_width>300){
 $sxbl = floatval($img_width/300);
@@ -91,7 +95,7 @@ $('#cropbox').css('display','');
 img_cur_width = $('#cropbox').attr('width');
 if(act=='b' && img_cur_width<800){
 img_rewidth = img_cur_width + 50;
-if(img_rewidth><?php echo $img_width ?>) img_rewidth = <?php echo $img_width ?>;
+if(img_rewidth > <?php echo $img_width ?>) img_rewidth = <?php echo $img_width ?>;
 }
 if(act=='s' && img_cur_width>200){
 img_rewidth = img_cur_width - 50;

@@ -205,7 +205,7 @@ class wechatCallbackapiTest
 		 $wcHelper=new wechatHelper();
 	    $wcHelper->inserPic($fromuser,$picurl);
 		  $content = array();
-        $content[] = array("Title"=>"图片上传成功",  "Description"=>"图片上传成功，接下来可以打印此图片", "PicUrl"=>$picurl, "Url" =>"http://print.wx.dlwebs.com/zoom.php?id=".$fromuser."&pic=".$picurl);
+        $content[] = array("Title"=>"图片上传成功",  "Description"=>"图片上传成功，接下来可以打印此图片", "PicUrl"=>$picurl, "Url" =>"http://print.wx.dlwebs.com/zoom.php?id=".$fromuser );
 		
         $result = $this->transmitNews($object, $content);
         return $result;
