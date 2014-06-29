@@ -6,7 +6,7 @@
                             $fromuser= $_GET["id"];
                             echo "执行getPicByUID:".date("Y-m-d H:i:s",time());
                              $picurl=$wcHelper->getPicByUID($fromuser);
-                            echo "执行完getPicByUID:".date("Y-m-d H:i:s",time();
+                                 echo "执行完getPicByUID:".date("Y-m-d H:i:s",time());
 
 //获取图片原始宽高，计算缩小比例
 $filename = date("YmdHis",$filetime).rand(100,999).'.jpg';
