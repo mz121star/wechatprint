@@ -109,9 +109,9 @@ gf_crop_init('160','120');
 <input type="hidden" name="src"  id="src" value="<?php echo $picurl ?>"
 <input type="hidden" name="input"   id="input" value="<?php echo$input ?>">
 <input type="hidden" id="preview" value="<?php echo$preview ?>">
-<input type="button" id="ok"  value="确定"/>
+<input type="button" id="saveBtn"  value="确定"/>
 </form>
-<span id="status"></span>
+<div id="status"></div>
 </div>
 <div style="display:none">
 <input type="button" onclick="gf_crop_init()" value="自由裁剪">
@@ -120,17 +120,17 @@ gf_crop_init('160','120');
 </div>
 <script>
 $(function(){
-$("#ok").on("click",function(){
-    $("#status").html("图片处理中..") ;
+$("#saveBtn").on("click",function(){
+   $("#status").html("图片处理中..") ;
   $.ajax({
-                  cache: true,
+
                   type: "POST",
                   url:"crop.php",
-                  data:$('#cropform').serialize(),// 你的formid
-                  async: true,
+                  data:$('#cropform').serialize() // 你的formid
+
 
               }).success(function(d){
-                 alert(d);
+
                  $("#status").html("最终图片如下<img width="300" src='/uploads/"+d+"/>") ;
                })
 })
