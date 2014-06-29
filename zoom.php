@@ -4,20 +4,7 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>裁剪图片</title>
 
-<style type="text/css">
-.jcrop-holder { margin:auto;text-align: left; }
-.jcrop-vline, .jcrop-hline{font-size: 0; position: absolute; background: white url('/css/Jcrop.gif') top left repeat; }
-.jcrop-vline { height: 100%; width: 1px !important; }
-.jcrop-hline { width: 100%; height: 1px !important; }
-.jcrop-handle { font-size: 1px; width: 7px !important; height: 7px !important; border: 1px #eee solid; background-color: #333; *width: 9px; *height: 9px; }
-.jcrop-tracker { width: 100%; height: 100%; }
-.custom .jcrop-vline,.custom .jcrop-hline{ background: yellow; }
-.custom .jcrop-handle{ border-color: black; background-color: #C7BB00; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
-.xyxy{margin:5px auto;width:100%}
-.xyxy input{margin-right:10px;width:30px;height:13px;border:0px;box-shadow:0px 0px 0px;}
-.bili{margin:5px auto;width:100%}
-.bili input{margin:auto 10px;}
-</style>
+
 <?php
       require('wechatHelper.php');
                                  $wcHelper=new wechatHelper();
@@ -32,7 +19,7 @@ $sxbl = floatval($img_width/300);
 $width = 300;
 }
 ?>
-      	<script src="js/jquery.min.js" type="text/javascript"></script>
+      	   <script src="js/jquery.min.js" type="text/javascript"></script>
       		<script src="js/jquery.Jcrop.js" type="text/javascript"></script>
       		<link rel="stylesheet" href="css/jquery.Jcrop.css" type="text/css" />
 <script language="Javascript">
