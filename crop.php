@@ -17,6 +17,15 @@ $y = intval($y*$sxbl);
 $width = intval($cropwidth*$sxbl);
 $height = intval($cropheight*$sxbl);
 
+ $imgArray = [
+     "src" => $src,
+     "x" => $x,
+     "y"=>$y,
+     "cropwidth"=> $width,
+     "cropheight"=> $height,
+     "sxbl"=>$sxbl
+
+ ];
 
         /** $data = file_get_contents($src); // 读文件内容
         $filepath = $_SERVER['DOCUMENT_ROOT']."uploads/";//图片保存的路径目录
@@ -31,13 +40,13 @@ $height = intval($cropheight*$sxbl);
  $filepath = $_SERVER['DOCUMENT_ROOT']."/uploads/";
 $imagename=getImage($src, '',$filepath , array('jpg', 'gif'));
 
- imagecropper($filepath,$imagename,800,600);
+ imagecropper($filepath,$imagename,$imgArray,800,600);
 
 
 
-   function imagecropper($source_path,$source_name, $target_width, $target_height)
+   function imagecropper($source_path,$source_name,$options, $target_width, $target_height)
    {
-   $source_path=  $source_path.$source_name;
+    $source_path=  $source_path.$source_name;
    	$source_info   = getimagesize($source_path);
    	$source_width  = $source_info[0];
    	$source_height = $source_info[1];
@@ -93,7 +102,10 @@ $imagename=getImage($src, '',$filepath , array('jpg', 'gif'));
    	$cropped_image = imagecreatetruecolor($cropped_width, $cropped_height);
 
    	// 裁剪
-   	imagecopy($cropped_image, $source_image, 0, 0, $source_x, $source_y, $cropped_width, $cropped_height);
+     /**	bool imagecopy ( resource $dst_im , resource $src_im , int $dst_x , int $dst_y , int $src_x , int $src_y , int $src_w , int $src_h )
+    将 src_im 图像中坐标从 src_x，src_y 开始，宽度为 src_w，高度为 src_h 的一部分拷贝到 dst_im 图像中坐标为 dst_x 和 dst_y 的位置上。  */
+
+   	imagecopy($cropped_image, $source_image, 0, 0, $imgArray["x"], $imgArray["x"], $imgArray["cropwidth"], $imgArray["$height"]);
    	// 缩放
    	imagecopyresampled($target_image, $cropped_image, 0, 0, 0, 0, $target_width, $target_height, $cropped_width, $cropped_height);
 
