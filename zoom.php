@@ -11,8 +11,8 @@
 $filename = date("YmdHis",$filetime).rand(100,999).'.jpg';
 $filepath = $_SERVER['DOCUMENT_ROOT']."/uploads/";
 $imagename=imageHelper::getImage($picurl,'',$filepath , array('jpg', 'gif'));
-           echo $filepath.$filename;
-list($img_width, $img_height, $type, $attr) = getimagesize($filepath.$filename);
+           echo $filepath.$imagename;
+list($img_width, $img_height, $type, $attr) = getimagesize($filepath.$imagename);
 $sxbl = 1;
 if($img_width>300){
 $sxbl = floatval($img_width/300);
