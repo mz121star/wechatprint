@@ -55,7 +55,7 @@ $width = 300;
 <input type="hidden" id="cropwidth"  name="cropwidth"/>
 <input type="hidden" id="cropheight" name="cropheight" />
 <input type="hidden" name="sxbl"  id="sxbl" value="<?php echo$sxbl ?>" /><!--当前图片缩小比例，php中用于计算裁剪-->
-<input type="hidden" name="src"  id="src" value="<?php echo $filepath.$imagename ?>" />
+<input type="hidden" name="src"  id="src" value="<?php echo $imagename ?>" />
 <input type="hidden" name="input"   id="input" value="<?php echo$input ?>" />
 <input type="hidden" id="preview" value="<?php echo$preview ?>" />
 <input type="button" class="btn btn-success" id="saveBtn"  value="确定"/>

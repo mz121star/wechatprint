@@ -38,9 +38,9 @@ $height = intval($cropheight*$sxbl);
         fclose($fp);//完工，哈        */
 
  $filepath = $_SERVER['DOCUMENT_ROOT']."/uploads/";
-  $imagename=imageHelper::getImage($src, '',$filepath , array('jpg', 'gif'));
+ // $imagename=imageHelper::getImage($src, '',$filepath , array('jpg', 'gif'));
 
-  $finalimage= imageHelper::imagecropper($filepath,$imagename,$imgArray,800,600);
+  $finalimage= imageHelper::imagecropper($filepath,$src,$imgArray,800,600);
   echo $finalimage;
 
 
