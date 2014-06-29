@@ -3,10 +3,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
 <title>裁剪图片</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style type="text/css">
 .jcrop-holder { margin:auto;text-align: left; }
-.jcrop-vline, .jcrop-hline{font-size: 0; position: absolute; background: white url('http://img.jb51.net/jslib/images/Jcrop.gif') top left repeat; }
+.jcrop-vline, .jcrop-hline{font-size: 0; position: absolute; background: white url('/css/Jcrop.gif') top left repeat; }
 .jcrop-vline { height: 100%; width: 1px !important; }
 .jcrop-hline { width: 100%; height: 1px !important; }
 .jcrop-handle { font-size: 1px; width: 7px !important; height: 7px !important; border: 1px #eee solid; background-color: #333; *width: 9px; *height: 9px; }
