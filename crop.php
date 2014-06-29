@@ -35,7 +35,7 @@ $imagename=getImage($src, '',$filepath , array('jpg', 'gif'));
 
 
 
-   function imagecropper($source_path,,$source_name, $target_width, $target_height)
+   function imagecropper($source_path,$source_name, $target_width, $target_height)
    {
    $source_path=  $source_path.$source_name
    	$source_info   = getimagesize($source_path);
