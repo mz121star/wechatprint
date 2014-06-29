@@ -131,7 +131,7 @@ $("#saveBtn").on("click",function(){
 
               }).success(function(d){
 
-                 $("#status").html("最终图片如下<img width="300" src='/uploads/"+d+"/>") ;
+                 $("#status").html("最终图片如下<img width='300' src='/uploads/"+d+"' />") ;
                })
 })
 })
