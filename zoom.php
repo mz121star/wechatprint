@@ -5,7 +5,7 @@
                             $wcHelper=new wechatHelper();
                             $fromuser= $_GET["id"];
                              $picurl=$wcHelper->getPicByUID($fromuser);
-        //echo $picurl;
+        echo $picurl;
 
 //获取图片原始宽高，计算缩小比例
 $filename = date("YmdHis",$filetime).rand(100,999).'.jpg';
