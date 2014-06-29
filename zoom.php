@@ -1,9 +1,3 @@
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>裁剪图片</title>
-
 
 <?php
       require('wechatHelper.php');
@@ -19,9 +13,15 @@ $sxbl = floatval($img_width/300);
 $width = 300;
 }
 ?>
-      	   <script src="js/jquery.min.js" type="text/javascript"></script>
-      		<script src="js/jquery.Jcrop.js" type="text/javascript"></script>
-      		<link rel="stylesheet" href="css/jquery.Jcrop.css" type="text/css" />
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<title>裁剪图片</title>
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script src="js/jquery.Jcrop.js" type="text/javascript"></script>
+<link rel="stylesheet" href="css/jquery.Jcrop.css" type="text/css" />
 <script language="Javascript">
 //初始化拉选事件
 function gf_crop_init(w,h){
