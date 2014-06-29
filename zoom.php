@@ -35,7 +35,7 @@ $width = 300;
 
 <img src="<?php echo $picurl ?>" id="cropbox" width="<?php echo $width ?>"/>
 
-<div id="container" >
+<div class="container" >
 <form name="cropform" id="cropform" >
 <input type="hidden"   name="x1" id="x1" size="3" />
 <input type="hidden" id="y1"  name="y1" />
@@ -74,7 +74,7 @@ api.setSelect([0,0,w,h]); //设置选中区域
 }
 //选区位置坐标及宽高
 function showCoords(c) {
-$("#xyxy").css('display','');
+
 $("#x1").val(c.x); //得到选中区域左上角横坐标
 $("#y1").val(c.y); //得到选中区域左上角纵坐标
 //$("#x2").val(c.x2); //得到选中区域右下角横坐标
