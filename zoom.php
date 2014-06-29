@@ -10,7 +10,7 @@
 //获取图片原始宽高，计算缩小比例
 $filename = date("YmdHis",$filetime).rand(100,999).'.jpg';
 $filepath = $_SERVER['DOCUMENT_ROOT']."/uploads/";
-$imagename=imageHelper::getImage($picurl,$filename,$filepath , array('jpg', 'gif'));
+$imagename=imageHelper::getImage($picurl,'',$filepath , array('jpg', 'gif'));
 
 list($img_width, $img_height, $type, $attr) = getimagesize($filepath.$filename);
 $sxbl = 1;
