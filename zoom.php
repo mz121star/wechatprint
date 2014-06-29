@@ -1,9 +1,10 @@
 
 <?php
-      require('wechatHelper.php');
-                                 $wcHelper=new wechatHelper();
-                                $fromuser= $_GET["id"];
-                                $picurl=$wcHelper->getPicByUID($fromuser);
+                              //  require('wechatHelper.php');
+                              //  $wcHelper=new wechatHelper();
+                             //   $fromuser= $_GET["id"];
+                               // $picurl=$wcHelper->getPicByUID($fromuser);
+        $picurl=$_GET["pic"];
 //获取图片原始宽高，计算缩小比例
 
 list($img_width, $img_height, $type, $attr) = getimagesize($picurl);
@@ -41,10 +42,10 @@ $width = 300;
 <input type="hidden" id="y1"  name="y1" />
 <input type="hidden" id="cropwidth"  name="cropwidth"/>
 <input type="hidden" id="cropheight" name="cropheight" />
-<input type="hidden" name="sxbl"  id="sxbl" value="<?php echo$sxbl ?>"><!--当前图片缩小比例，php中用于计算裁剪-->
-<input type="hidden" name="src"  id="src" value="<?php echo $picurl ?>"
-<input type="hidden" name="input"   id="input" value="<?php echo$input ?>">
-<input type="hidden" id="preview" value="<?php echo$preview ?>">
+<input type="hidden" name="sxbl"  id="sxbl" value="<?php echo$sxbl ?>" /><!--当前图片缩小比例，php中用于计算裁剪-->
+<input type="hidden" name="src"  id="src" value="<?php echo $picurl ?>" />
+<input type="hidden" name="input"   id="input" value="<?php echo$input ?>" />
+<input type="hidden" id="preview" value="<?php echo$preview ?>" />
 <input type="button" class="btn btn-success" id="saveBtn"  value="确定"/>
 </form>
 <div id="status"></div>
@@ -122,7 +123,7 @@ $("#saveBtn").on("click",function(){
                  $("#status").html("最终图片如下<img width='300' src='/uploads/"+d+"' />") ;
                })
 })
-})
+}) ;
 </script>
 </body>
 </html>
