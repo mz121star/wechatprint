@@ -22,6 +22,38 @@ $width = 300;
 <script src="js/jquery.min.js" type="text/javascript"></script>
 <script src="js/jquery.Jcrop.js" type="text/javascript"></script>
 <link rel="stylesheet" href="css/jquery.Jcrop.css" type="text/css" />
+
+</head>
+<body>
+
+<div style="display:none">
+<label style="float:left;">原始宽度:<?php echo $img_width ?>px</label>
+<input type="button" onclick="gf_crop_resize('b')" value="放大">
+<input type="button" onclick="gf_crop_resize('s')" value="缩小">
+<label id='cwidth' style="float:right;">当前宽度:<?php echo $width ?></label>
+</div>
+
+<img src="<?php echo $picurl ?>" id="cropbox" width="<?php echo $width ?>"/>
+
+<div id="container" >
+<form name="cropform" id="cropform" >
+<input type="hidden"   name="x1" id="x1" size="3" />
+<input type="hidden" id="y1"  name="y1" />
+<input type="hidden" id="cropwidth"  name="cropwidth"/>
+<input type="hidden" id="cropheight" name="cropheight" />
+<input type="hidden" name="sxbl"  id="sxbl" value="<?php echo$sxbl ?>"><!--当前图片缩小比例，php中用于计算裁剪-->
+<input type="hidden" name="src"  id="src" value="<?php echo $picurl ?>"
+<input type="hidden" name="input"   id="input" value="<?php echo$input ?>">
+<input type="hidden" id="preview" value="<?php echo$preview ?>">
+<input type="button" class="btn btn-success" id="saveBtn"  value="确定"/>
+</form>
+<div id="status"></div>
+</div>
+<div style="display:none">
+<input type="button" onclick="gf_crop_init()" value="自由裁剪">
+<input type="button" onclick="gf_crop_init('160','120')" value="4:3">
+<input type="button" onclick="gf_crop_init('120','180')" value="2:3">
+</div>
 <script language="Javascript">
 //初始化拉选事件
 function gf_crop_init(w,h){
@@ -74,37 +106,6 @@ $(function(){
 gf_crop_init('160','120');
 })
 </script>
-</head>
-<body>
-
-<div style="display:none">
-<label style="float:left;">原始宽度:<?php echo $img_width ?>px</label>
-<input type="button" onclick="gf_crop_resize('b')" value="放大">
-<input type="button" onclick="gf_crop_resize('s')" value="缩小">
-<label id='cwidth' style="float:right;">当前宽度:<?php echo $width ?></label>
-</div>
-
-<img src="<?php echo $picurl ?>" id="cropbox" width="<?php echo $width ?>"/>
-
-<div id="xyxy" style="display:none">
-<form name="cropform" id="cropform" >
-<input type="hidden"   name="x1" id="x1" size="3" />
-<input type="hidden" id="y1"  name="y1" />
-<input type="hidden" id="cropwidth"  name="cropwidth"/>
-<input type="hidden" id="cropheight" name="cropheight" />
-<input type="hidden" name="sxbl"  id="sxbl" value="<?php echo$sxbl ?>"><!--当前图片缩小比例，php中用于计算裁剪-->
-<input type="hidden" name="src"  id="src" value="<?php echo $picurl ?>"
-<input type="hidden" name="input"   id="input" value="<?php echo$input ?>">
-<input type="hidden" id="preview" value="<?php echo$preview ?>">
-<input type="button" id="saveBtn"  value="确定"/>
-</form>
-<div id="status"></div>
-</div>
-<div style="display:none">
-<input type="button" onclick="gf_crop_init()" value="自由裁剪">
-<input type="button" onclick="gf_crop_init('160','120')" value="4:3">
-<input type="button" onclick="gf_crop_init('120','180')" value="2:3">
-</div>
 <script>
 $(function(){
 $("#saveBtn").on("click",function(){
