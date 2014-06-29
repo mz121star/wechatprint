@@ -31,12 +31,13 @@ $height = intval($cropheight*$sxbl);
  $filepath = $_SERVER['DOCUMENT_ROOT']."/uploads/";
 $imagename=getImage($src, '',$filepath , array('jpg', 'gif'));
 
- imagecropper($filepath.$imagename,800,600);
+ imagecropper($filepath,$imagename,800,600);
 
 
 
-   function imagecropper($source_path, $target_width, $target_height)
+   function imagecropper($source_path,,$source_name, $target_width, $target_height)
    {
+   $source_path=  $source_path.$source_name
    	$source_info   = getimagesize($source_path);
    	$source_width  = $source_info[0];
    	$source_height = $source_info[1];
@@ -97,7 +98,7 @@ $imagename=getImage($src, '',$filepath , array('jpg', 'gif'));
    	imagecopyresampled($target_image, $cropped_image, 0, 0, 0, 0, $target_width, $target_height, $cropped_width, $cropped_height);
 
    	//header('Content-Type: image/jpeg');
-   	imagejpeg($target_image, $_SERVER['DOCUMENT_ROOT']."/uploads/".date("YmdHis",$filetime).rand(100,999).'.jpg');
+   	imagejpeg($target_image, $_SERVER['DOCUMENT_ROOT']."/uploads/".$source_name);
    	imagedestroy($source_image);
    	imagedestroy($target_image);
    	imagedestroy($cropped_image);
