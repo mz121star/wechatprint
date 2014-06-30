@@ -49,28 +49,29 @@
 
   <body>
 
-    <div class="container" style="height:1000px">
+    <div class="container"  >
 
 
    <div  class="row" >
-      <form name="cropform" id="cropform" >
-      <input type="hidden"   name="x1" id="x1" size="3" />
-      <input type="hidden" id="y1"  name="y1" />
-      <input type="hidden" id="cropwidth"  name="cropwidth"/>
-      <input type="hidden" id="cropheight" name="cropheight" />
-      <input type="hidden" name="sxbl"  id="sxbl" value="<?php echo$sxbl ?>" /><!--当前图片缩小比例，php中用于计算裁剪-->
-      <input type="hidden" name="src"  id="src" value="<?php echo $imagename ?>" />
-      <input type="hidden" name="input"   id="input" value="<?php echo$input ?>" />
-      <input type="hidden" id="preview" value="<?php echo$preview ?>" />
-      <input type="button" class="btn btn-success" id="saveBtn"  value="确定"/>
-      </form>
-      </div>
+          <form name="cropform" id="cropform" >
+          <input type="hidden"   name="x1" id="x1" size="3" />
+          <input type="hidden" id="y1"  name="y1" />
+          <input type="hidden" id="cropwidth"  name="cropwidth"/>
+          <input type="hidden" id="cropheight" name="cropheight" />
+          <input type="hidden" name="sxbl"  id="sxbl" value="<?php echo$sxbl ?>" /><!--当前图片缩小比例，php中用于计算裁剪-->
+          <input type="hidden" name="src"  id="src" value="<?php echo $imagename ?>" />
+          <input type="hidden" name="input"   id="input" value="<?php echo$input ?>" />
+          <input type="hidden" id="preview" value="<?php echo$preview ?>" />
+          <input type="button" class="btn btn-success" id="saveBtn"  value="确定"/>
+          </form>
+   </div>
+   <div id="status"></div>
       <hr>
-     <div class="row"  >
+     <div class="row">
         <img src="<?php echo $picurl ?>" id="cropbox" width="<?php echo $width ?>"/>
      </div>
 
-      <div id="status"></div>
+
 
 
 
