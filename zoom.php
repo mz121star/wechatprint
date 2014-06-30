@@ -1,3 +1,30 @@
+<?php
+ require("imageHelper.php");
+                           require('wechatHelper.php');
+                            $wcHelper=new wechatHelper();
+                            $fromuser= $_GET["id"];
+                          //  echo "执行getPicByUID:".date("Y-m-d H:i:s",time());
+                             $picurl=$wcHelper->getPicByUID($fromuser);
+       // $picurl=$_GET["pic"];
+                                // echo "执行完getPicByUID:".date("Y-m-d H:i:s",time());
+
+//获取图片原始宽高，计算缩小比例
+$filename = date("YmdHis",$filetime).rand(100,999).'.jpg';
+$filepath = $_SERVER['DOCUMENT_ROOT']."/uploads/";
+//echo "执行getImage:".date("Y-m-d H:i:s",time()) ;
+$imagename=imageHelper::getImage($picurl,'',$filepath , array('jpg', 'gif'));
+//$imagename=imageHelper::grabImage($picurl,'',$filepath) ;
+
+//echo "执行完getImage:".date("Y-m-d H:i:s",time()) ;
+//echo "执行getimagesize:".date("Y-m-d H:i:s",time()) ;
+list($img_width, $img_height, $type, $attr) = getimagesize($filepath.$imagename);
+//echo "执行完getimagesize:".date("Y-m-d H:i:s",time());
+$sxbl = 1;
+if($img_width>300){
+$sxbl = floatval($img_width/300);
+$width = 300;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,9 +93,9 @@
 </div>
 
 		<!-- This is the image we're attaching Jcrop to -->
-		<img src="demo_files/pool.jpg" id="cropbox" />
 
-		<!-- This is the form that our event handler fills -->
+       <img src="<?php echo $picurl ?>" id="cropbox" width="<?php echo $width ?>"/>
+
 		<form action="crop.php" method="post" onsubmit="return checkCoords();">
 			<input type="hidden" id="x" name="x" />
 			<input type="hidden" id="y" name="y" />
