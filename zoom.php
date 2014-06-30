@@ -44,7 +44,7 @@ function clearCoords(){
 			<h1>Jcrop - 事件处理</h1>
 
 			<!-- This is the image we're attaching Jcrop to -->
-			<img src="demo_files/flowers.jpg" id="target" alt="Flowers">
+			<img src="http://code.ciaoca.com/jquery/jcrop/demo/demos/demo_files/flowers.jpg" id="target" alt="Flowers">
 
 			<!-- This is the form that our event handler fills -->
 			<form id="coords" class="coords" onsubmit="return false;" action="http://example.com/post.php">
