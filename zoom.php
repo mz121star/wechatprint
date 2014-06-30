@@ -29,7 +29,7 @@ $width = 300;
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+/*<meta name="viewport" content="width=device-width, initial-scale=1.0">*/
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <title>裁剪图片</title>
 <script src="js/jquery.min.js" type="text/javascript"></script>
