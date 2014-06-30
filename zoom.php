@@ -30,6 +30,7 @@ $width = 300;
 <head>
   <title>Live Cropping Demo</title>
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery.Jcrop.js"></script>
   <link rel="stylesheet" href="demo_files/main.css" type="text/css" />
