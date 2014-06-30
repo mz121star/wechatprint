@@ -43,6 +43,7 @@
     <!-- Custom styles for this template -->
     <link href="starter-template.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="css/jquery.Jcrop.css" type="text/css" />
 
   </head>
 
@@ -78,7 +79,8 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/js/jquery.min.js"></script>
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/jquery.Jcrop.js" type="text/javascript"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script language="Javascript">
     //初始化拉选事件
