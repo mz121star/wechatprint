@@ -79,6 +79,7 @@
       <img src="<?php echo $picurl ?>" id="cropbox" width="<?php echo $width ?>"/>
      </div>
 
+<div  class="row" >
       <form name="cropform" id="cropform" >
       <input type="hidden"   name="x1" id="x1" size="3" />
       <input type="hidden" id="y1"  name="y1" />
@@ -90,6 +91,7 @@
       <input type="hidden" id="preview" value="<?php echo$preview ?>" />
       <input type="button" class="btn btn-success" id="saveBtn"  value="确定"/>
       </form>
+      </div>
       <div id="status"></div>
 
 
@@ -107,7 +109,7 @@
     //初始化拉选事件
     function gf_crop_init(w,h){
     $('.jcrop-holder').remove();
-    $('#cropbox').css('display','');
+    $('#cropbox').css('display','block');
     var api = $.Jcrop("#cropbox");
 
     if(w=='' || h==''){
@@ -134,7 +136,7 @@
     //放大或缩小图片以方便裁剪出合适图片
     function gf_crop_resize(act){
     $('.jcrop-holder').remove();
-    $('#cropbox').css('display','');
+    $('#cropbox').css('display','block');
 
     img_cur_width = $('#cropbox').attr('width');
     if(act=='b' && img_cur_width<800){
