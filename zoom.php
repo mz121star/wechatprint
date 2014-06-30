@@ -42,7 +42,7 @@ $width = 300;
   $(function(){
 
     $('#cropbox').Jcrop({
-      aspectRatio: 16 / 9,
+      aspectRatio: 4 / 3,
       onSelect: updateCoords,
       onChange: updateCoords
     });
