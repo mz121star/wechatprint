@@ -40,7 +40,7 @@ $width = 300;
 <script type="text/javascript">
 
   $(function(){
-
+    alert("开始裁剪");
     $('#cropbox').Jcrop({
       aspectRatio: 4 / 3,
       onSelect: updateCoords,
