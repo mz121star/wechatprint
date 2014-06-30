@@ -41,18 +41,19 @@ $width = 300;
   $(function(){
 
     $('#cropbox').Jcrop({
-     aspectRatio: 16 / 9,
-      onSelect: updateCoords
+      aspectRatio: 16 / 9,
+      onSelect: updateCoords,
+      onChange: updateCoords
     });
 
   });
 
   function updateCoords(c)
   {
-    $('#x').val(c.x);
-    $('#y').val(c.y);
-    $('#w').val(c.w);
-    $('#h').val(c.h);
+    $("#x1").val(c.x); //得到选中区域左上角横坐标
+    $("#y1").val(c.y); //得到选中区域左上角纵坐标
+    $("#cropwidth").val(c.w); //得到选中区域的宽度
+    $("#cropheight").val(c.h); //得到选中区域的高度
   };
 
   function checkCoords()
@@ -84,24 +85,24 @@ $width = 300;
 <div class="jc-demo-box">
 
 <div class="page-header">
-<ul class="breadcrumb first">
-  <li><a href="../index.html">Jcrop</a> <span class="divider">/</span></li>
-  <li><a href="../index.html">Demos</a> <span class="divider">/</span></li>
-  <li class="active">Live Demo (Requires PHP)</li>
-</ul>
-<h1>Server-based Cropping Behavior</h1>
+
+<h1>裁剪图片到合适大小，然后打印</h1>
 </div>
 
 		<!-- This is the image we're attaching Jcrop to -->
 
        <img src="<?php echo $picurl ?>" id="cropbox" width="<?php echo $width ?>"/>
-
-		<form action="crop.php" method="post" onsubmit="return checkCoords();">
-			<input type="hidden" id="x" name="x" />
-			<input type="hidden" id="y" name="y" />
-			<input type="hidden" id="w" name="w" />
-			<input type="hidden" id="h" name="h" />
-			<input type="submit" value="Crop Image" class="btn btn-large btn-inverse" />
+       <div id="status"></div>
+		<form id="cropform" >
+            <input type="hidden"   name="x1" id="x1" size="3" />
+            <input type="hidden" id="y1"  name="y1" />
+            <input type="hidden" id="cropwidth"  name="cropwidth"/>
+            <input type="hidden" id="cropheight" name="cropheight" />
+            <input type="hidden" name="sxbl"  id="sxbl" value="<?php echo$sxbl ?>" /><!--当前图片缩小比例，php中用于计算裁剪-->
+            <input type="hidden" name="src"  id="src" value="<?php echo $imagename ?>" />
+            <input type="hidden" name="input"   id="input" value="<?php echo$input ?>" />
+            <input type="hidden" id="preview" value="<?php echo$preview ?>" />
+			<input type="submit" value="确定裁剪"  id="saveBtn"  class="btn btn-large btn-inverse" />
 		</form>
 
 
@@ -111,5 +112,24 @@ $width = 300;
 	</div>
 	</div>
 	</body>
+       <script>
+       $(function(){
+            $("#saveBtn").on("click",function(){
+                  $("#status").html("图片处理中..") ;
+                  if( checkCoords()){
+                   $.ajax({
 
+                                type: "POST",
+                                 url:"crop.php",
+                                 data:$('#cropform').serialize() // 你的formid
+
+
+                             }).success(function(d){
+
+                                $("#status").html("最终图片如下<img width='300' src='/uploads/"+d+"' />") ;
+                              })
+                  };
+           })
+       }) ;
+       </script>
 </html>
