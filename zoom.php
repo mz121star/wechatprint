@@ -5,7 +5,7 @@
                             $fromuser= $_GET["id"];
                           //  echo "执行getPicByUID:".date("Y-m-d H:i:s",time());
                              $picurl=$wcHelper->getPicByUID($fromuser);
-      $picurl='http://deepliquid.com/Jcrop/demos/demo_files/pool.jpg';
+      //$picurl='http://deepliquid.com/Jcrop/demos/demo_files/pool.jpg';
                                 // echo "执行完getPicByUID:".date("Y-m-d H:i:s",time());
 
 //获取图片原始宽高，计算缩小比例
