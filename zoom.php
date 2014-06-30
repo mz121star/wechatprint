@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Jcrop 图像裁剪插件 &raquo; 在线演示 &raquo; 事件处理 - 前端开发仓库</title>
 <link rel="stylesheet" href=""/css/jquery.Jcrop.css">
 
