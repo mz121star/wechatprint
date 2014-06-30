@@ -58,7 +58,7 @@ $width = 300;
 
   function checkCoords()
   {
-    if (parseInt($('#w').val())) return true;
+    if (parseInt($('#cropwidth').val())) return true;
     alert('Please select a crop region then press submit.');
     return false;
   };
