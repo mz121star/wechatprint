@@ -102,7 +102,7 @@ $width = 300;
             <input type="hidden" name="src"  id="src" value="<?php echo $imagename ?>" />
             <input type="hidden" name="input"   id="input" value="<?php echo$input ?>" />
             <input type="hidden" id="preview" value="<?php echo$preview ?>" />
-			<input type="submit" value="确定裁剪"  id="saveBtn"  class="btn btn-large btn-inverse" />
+			<input type="button" value="确定裁剪"  id="saveBtn"  class="btn btn-large btn-inverse" />
 		</form>
 
 
