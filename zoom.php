@@ -4,10 +4,10 @@
 <head>
 <meta charset="utf-8">
 <title>Jcrop 图像裁剪插件 &raquo; 在线演示 &raquo; 事件处理 - 前端开发仓库</title>
-<link rel="stylesheet" href="../css/jquery.Jcrop.css">
-<link rel="stylesheet" href="demo_files/demos.css">
-<script src="../js/jquery.min.js"></script>
-<script src="../js/jquery.Jcrop.js"></script>
+<link rel="stylesheet" href=""/css/jquery.Jcrop.css">
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.Jcrop.js"></script>
 <script>
 jQuery(function($){
 	$("#target").Jcrop({
