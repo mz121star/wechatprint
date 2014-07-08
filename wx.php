@@ -180,18 +180,8 @@ class wechatCallbackapiTest
         $content= str_replace("test(\"", "", $content);
         $content  = str_replace("\")", "", $content);
         $content= $this->unicode_decode($content) ;
+         $result = $this->transmitText($object, $content);
 
-
-            
-            if(is_array($content)){
-                if (isset($content[0]['PicUrl'])){
-                    $result = $this->transmitNews($object, $content);
-                }else if (isset($content['MusicUrl'])){
-                    $result = $this->transmitMusic($object, $content);
-                }
-            }else{
-                $result = $this->transmitText($object, $content);
-            }
 
 
         return $result;
