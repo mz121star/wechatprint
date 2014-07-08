@@ -179,11 +179,10 @@ class wechatCallbackapiTest
         $content= file_get_contents("http://www.xiaohuangji.com/web.php?callback=jQuery17101399328545667231_1404833649724&para=".$keyword."&_=".time());
         $content= str_replace("test(\"", "", $content);
         $content  = str_replace("\")", "", $content);
-       // $content= $this->unicode_decode($content) ;
-        $result = $this->transmitText($object,$content );
-        return   $result;
+        $content= $this->unicode_decode($content) ;
+
         //多客服人工回复模式
-        if (strstr($keyword, "您好") || strstr($keyword, "你好") || strstr($keyword, "在吗")){
+        if (strstr($keyword, "服务消息")  ){
             $result = $this->transmitService($object);
         }
         //自动回复模式
