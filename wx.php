@@ -83,7 +83,7 @@ class wechatCallbackapiTest
                     $result = "unknown msg type: ".$RX_TYPE;
                     break;
             }
-            $this->logger("T ".$result);
+
             echo $result;
         }else {
             echo "";
@@ -182,7 +182,8 @@ class wechatCallbackapiTest
          $content  = str_replace("\")", "", $content);
         $content= $this->unicode_decode($content) ;
     $this->logger($content);
-         $result = $this->transmitText($object, $keyword);
+
+         $result = $this->transmitText($object, $content);
 
  $this->logger($result);
 
@@ -254,6 +255,7 @@ class wechatCallbackapiTest
 <CreateTime>%s</CreateTime>
 <MsgType><![CDATA[text]]></MsgType>
 <Content><![CDATA[%s]]></Content>
+ <FuncFlag>0</FuncFlag>
 </xml>";
         $result = sprintf($xmlTpl, $object->FromUserName, $object->ToUserName, time(), $content);
         return $result;
