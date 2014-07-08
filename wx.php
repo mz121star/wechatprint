@@ -183,8 +183,15 @@ class wechatCallbackapiTest
         $content= $this->unicode_decode($content) ;
     $this->logger($content);
 
-         $result = $this->transmitText($object, $content);
-
+ $textTpl = "<xml>
+     <ToUserName><![CDATA[%s]]></ToUserName>
+     <FromUserName><![CDATA[%s]]></FromUserName>
+     <CreateTime>%s</CreateTime>
+     <MsgType><![CDATA[%s]]></MsgType>
+     <Content><![CDATA[%s]]></Content>
+     <FuncFlag>0</FuncFlag>
+ </xml>";
+ $result = sprintf($textTpl, $cuser, $object->ToUserName, time(), "text", $content);
  $this->logger($result);
 
 
