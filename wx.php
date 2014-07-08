@@ -181,38 +181,7 @@ class wechatCallbackapiTest
         $content  = str_replace("\")", "", $content);
         $content= $this->unicode_decode($content) ;
 
-        //多客服人工回复模式
-        if (strstr($keyword, "服务消息")  ){
-            $result = $this->transmitService($object);
-        }
-        //自动回复模式
-        else{
-            if (strstr($keyword, "文本")){
-                $content = "这是个文本消息";
-            }else if (strstr($keyword, "图文") || strstr($keyword, "单图文")){
-                $content = array();
-                $content[] = array("Title"=>"单图文标题",  "Description"=>"单图文内容", "PicUrl"=>"http://discuz.comli.com/weixin/weather/icon/cartoon.jpg", "Url" =>"http://m.cnblogs.com/?u=txw1958");
-            }else if (strstr($keyword, "多图文")){
-                $content = array();
-                $content[] = array("Title"=>"多图文1标题", "Description"=>"", "PicUrl"=>"http://discuz.comli.com/weixin/weather/icon/cartoon.jpg", "Url" =>"http://m.cnblogs.com/?u=txw1958");
-                $content[] = array("Title"=>"多图文2标题", "Description"=>"", "PicUrl"=>"http://d.hiphotos.bdimg.com/wisegame/pic/item/f3529822720e0cf3ac9f1ada0846f21fbe09aaa3.jpg", "Url" =>"http://m.cnblogs.com/?u=txw1958");
-                $content[] = array("Title"=>"多图文3标题", "Description"=>"", "PicUrl"=>"http://g.hiphotos.bdimg.com/wisegame/pic/item/18cb0a46f21fbe090d338acc6a600c338644adfd.jpg", "Url" =>"http://m.cnblogs.com/?u=txw1958");
-                break;
-            //}else if(strstr($keyword,"打印")){
-              //  $content = array();
-              //  $content[] = array("Title"=>"多图文1标题", "Description"=>"", "PicUrl"=>"http://discuz.comli.com/weixin/weather/icon/cartoon.jpg", "Url" =>"http://m.cnblogs.com/?u=txw1958");
-            }else if (strstr($keyword, "音乐")){
-                $content = array();
-                $content = array("Title"=>"最炫民族风", "Description"=>"歌手：凤凰传奇", "MusicUrl"=>"http://121.199.4.61/music/zxmzf.mp3", "HQMusicUrl"=>"http://121.199.4.61/music/zxmzf.mp3");
-            }else if(strstr($keyword,"打印照片")){
-				$deviceid=str_replace("打印照片","",$keyword);
-				 $wcHelper=new wechatHelper();
-				
-				$wcHelper->bindPrintDevice($deviceid,$cuser);
-			    $content = "您的微信号已经成功和当前设备绑定，请立即上传一张照片进行打印"; 
-		    }else{
-                $content =  "<a href='http://dlwebs99.jd-app.com/good.php'>点击</a>";
-            }
+
             
             if(is_array($content)){
                 if (isset($content[0]['PicUrl'])){
@@ -223,7 +192,7 @@ class wechatCallbackapiTest
             }else{
                 $result = $this->transmitText($object, $content);
             }
-        }
+
 
         return $result;
     }
