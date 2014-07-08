@@ -176,15 +176,19 @@ class wechatCallbackapiTest
 		$cuser=$object->FromUserName;
         $keyword = trim($object->Content);
 
-      //$content= file_get_contents("http://www.xiaohuangji.com/web.php?callback=jQuery17101399328545667231_1404833649724&para=".$keyword."&_=".time());
-       // $content= str_replace("test(\"", "", $content);
-       // $content  = str_replace("\")", "", $content);
-      //  $content= $this->unicode_decode($content) ;
+       $content= file_get_contents("http://www.xiaohuangji.com/web.php?callback=jQuery17101399328545667231_1404833649724&para=".$keyword."&_=".time());
+ $this->logger($content);
+         $content= str_replace("test(\"", "", $content);
+         $content  = str_replace("\")", "", $content);
+        $content= $this->unicode_decode($content) ;
+    $this->logger($content);
          $result = $this->transmitText($object, $keyword);
 
+ $this->logger($result);
 
 
         return $result;
+
     }
 
     //接收图片消息
