@@ -121,7 +121,7 @@ $width = 300;
                    $.ajax({
 
                                 type: "POST",
-                                 url:"crop.php?id="<?php echo $_GET["id"] ?>,
+                                 url:"crop.php?id=<?php echo $_GET['id'] ?>",
                                  data:$('#cropform').serialize() // 你的formid
 
 
