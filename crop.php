@@ -1,5 +1,6 @@
 <?php
  require("imageHelper.php");
+  require('wechatHelper.php');
 //$_GET数据：原始图片url($src)、选区左上坐标($x/$y)、选区宽高($cropwidth/$cropheight)、原图缩小比例($sxbl)
 $src=$_POST["src"];
 $x=$_POST["x1"];
