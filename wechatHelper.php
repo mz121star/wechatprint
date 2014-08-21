@@ -127,7 +127,7 @@ public function getPicByUID($wexinid){
 	   }
 	   	   public function getNoPrintPics()
        	   {
-                $sql="select u.picurl as url from printpic  where isprint=0 ";
+                $sql="select  picurl as url from printpic  where isprint=0 ";
 
        			  $result=$this->conn->ExecuteSQL($sql);
        			  return $result;
