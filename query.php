@@ -5,6 +5,7 @@
 
           $uid=$_GET["uid"];
           $wcHelper-> setNoPrintPics($uid);
+          echo "printed";
        }
        else{
 
