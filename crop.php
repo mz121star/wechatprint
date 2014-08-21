@@ -43,7 +43,7 @@ $height = intval($cropheight*$sxbl);
 
   $finalimage= imageHelper::imagecropper($filepath,$src,$imgArray,800,600);
    $wcHelper=new wechatHelper();
-   $wcHelper->inserPic($_GET["id"],$picurl);
+   $wcHelper->inserPic($_GET["id"],"/uploads/"+$finalimage);
   echo $finalimage;
 
 
