@@ -1,0 +1,10 @@
+D:\wxprint\form\form\bin\Debug\form.exe
+D:\wxprint\form\form\bin\Debug\form.pdb
+D:\wxprint\form\form\obj\Debug\form.csprojResolveAssemblyReference.cache
+D:\wxprint\form\form\obj\Debug\form.Form1.resources
+D:\wxprint\form\form\obj\Debug\form.Properties.Resources.resources
+D:\wxprint\form\form\obj\Debug\form.csproj.GenerateResource.Cache
+D:\wxprint\form\form\obj\Debug\form.exe
+D:\wxprint\form\form\obj\Debug\form.pdb
+D:\wxprint\form\form\bin\Debug\Newtonsoft.Json.dll
+D:\wxprint\form\form\bin\Debug\Newtonsoft.Json.xml
