@@ -1,10 +1,10 @@
 <?php
       require('wechatHelper.php');
 
-      if(isset($_GET["uid"])&& $_GET["uid"]){
+      if(isset($_GET["uid"]) && $_GET["uid"]){
 
           $uid=$_GET["uid"];
-          $wcHelper-> setNoPrintPics($uid)
+          $wcHelper-> setNoPrintPics($uid);
        }
        else{
 
