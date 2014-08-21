@@ -1,5 +1,18 @@
 <?php
       require('wechatHelper.php');
-	 $wcHelper=new wechatHelper();
-	 echo json_encode( $wcHelper->getNoPrintPics());
+
+      if(isset($_GET["uid"])&& $_GET["uid"]){
+
+          $uid=$_GET["uid"];
+          $wcHelper-> setNoPrintPics($uid)
+       }
+       else{
+
+                 $wcHelper=new wechatHelper();
+                 echo json_encode( $wcHelper->getNoPrintPics());
+       }
+
+
+
+
 ?>
