@@ -85,10 +85,10 @@ public function getPicByUID($wexinid){
            $result=$this->conn->ExecuteSQL($querystr);
           return  $result["picurl"];
 }
-	  public function inserPic($wexinid,$picurl){
+	  public function inserPic($wexinid,$picurl,$ready=0){
 	     $querystr="select * from pics where uid='".$wexinid."'";
 	     $insertstr="insert into pics   values ('".$wexinid."','".$picurl."')"  ;
-	     $updatestr="update pics SET isprint=0,picurl = '".$picurl."' WHERE uid='".$wexinid."'";;
+	     $updatestr="update pics SET ready=".$ready.",isprint=0,picurl = '".$picurl."' WHERE uid='".$wexinid."'";;
          $result=$this->conn->ExecuteSQL($querystr);
 
                         if(count($result)>1){
@@ -127,7 +127,7 @@ public function getPicByUID($wexinid){
 	   }
 	   	   public function getNoPrintPics()
        	   {
-                $sql="select  *   from pics  where isprint=0 ";
+                $sql="select  *   from pics  where isprint=0 and ready=1";
 
        			  $result=$this->conn->ExecuteSQL($sql);
        			  return $result;
