@@ -49,7 +49,7 @@ class wechatCallbackapiTest
     public function responseMsg()
     {
         $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
-        $this->logger("R ".$postStr);
+
         if (!empty($postStr)){
             $this->logger("R ".$postStr);
             $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
@@ -83,7 +83,7 @@ class wechatCallbackapiTest
                     $result = "unknown msg type: ".$RX_TYPE;
                     break;
             }
-            $this->logger("T ".$result);
+
             echo $result;
         }else {
             echo "";
@@ -142,57 +142,61 @@ class wechatCallbackapiTest
         }
         return $result;
     }
-
+ private function unicode_decode($name)
+ {
+ // 转换编码，将Unicode编码转换成可以浏览的utf-8编码
+ $pattern = '/([\w]+)|(\\\u([\w]{4}))/i';
+ preg_match_all($pattern, $name, $matches);
+ if (!empty($matches))
+ {
+ $name = '';
+ for($j = 0; $j < count($matches[0]); $j++)
+ {
+ $str = $matches[0][$j];
+ if (strpos($str, '\\u') === 0)
+ {
+ $code = base_convert(substr($str, 2, 2), 16, 10);
+ $code2 = base_convert(substr($str, 4), 16, 10);
+ $c = chr($code).chr($code2);
+ $c = iconv('UCS-2', 'UTF-8', $c);
+ $name .= $c;
+ }
+ else
+ {
+ $name .= $str;
+ }
+ }
+ }
+ return $name;
+ }
     //接收文本消息
     private function receiveText($object)
     {
-		 $cuser=$object->FromUserName;
+
+		$cuser=$object->FromUserName;
         $keyword = trim($object->Content);
-        //多客服人工回复模式
-        if (strstr($keyword, "您好") || strstr($keyword, "你好") || strstr($keyword, "在吗")){
-            $result = $this->transmitService($object);
-        }
-        //自动回复模式
-        else{
-            if (strstr($keyword, "文本")){
-                $content = "这是个文本消息";
-            }else if (strstr($keyword, "图文") || strstr($keyword, "单图文")){
-                $content = array();
-                $content[] = array("Title"=>"单图文标题",  "Description"=>"单图文内容", "PicUrl"=>"http://discuz.comli.com/weixin/weather/icon/cartoon.jpg", "Url" =>"http://m.cnblogs.com/?u=txw1958");
-            }else if (strstr($keyword, "多图文")){
-                $content = array();
-                $content[] = array("Title"=>"多图文1标题", "Description"=>"", "PicUrl"=>"http://discuz.comli.com/weixin/weather/icon/cartoon.jpg", "Url" =>"http://m.cnblogs.com/?u=txw1958");
-                $content[] = array("Title"=>"多图文2标题", "Description"=>"", "PicUrl"=>"http://d.hiphotos.bdimg.com/wisegame/pic/item/f3529822720e0cf3ac9f1ada0846f21fbe09aaa3.jpg", "Url" =>"http://m.cnblogs.com/?u=txw1958");
-                $content[] = array("Title"=>"多图文3标题", "Description"=>"", "PicUrl"=>"http://g.hiphotos.bdimg.com/wisegame/pic/item/18cb0a46f21fbe090d338acc6a600c338644adfd.jpg", "Url" =>"http://m.cnblogs.com/?u=txw1958");
-                break;
-            //}else if(strstr($keyword,"打印")){
-              //  $content = array();
-              //  $content[] = array("Title"=>"多图文1标题", "Description"=>"", "PicUrl"=>"http://discuz.comli.com/weixin/weather/icon/cartoon.jpg", "Url" =>"http://m.cnblogs.com/?u=txw1958");
-            }else if (strstr($keyword, "音乐")){
-                $content = array();
-                $content = array("Title"=>"最炫民族风", "Description"=>"歌手：凤凰传奇", "MusicUrl"=>"http://121.199.4.61/music/zxmzf.mp3", "HQMusicUrl"=>"http://121.199.4.61/music/zxmzf.mp3");
-            }else if(strstr($keyword,"打印照片")){
-				$deviceid=str_replace("打印照片","",$keyword);
-				 $wcHelper=new wechatHelper();
-				
-				$wcHelper->bindPrintDevice($deviceid,$cuser);
-			    $content = "您的微信号已经成功和当前设备绑定，请立即上传一张照片进行打印"; 
-		    }else{
-                $content =  "<a href='http://dlwebs99.jd-app.com/good.php'>点击</a>";
-            }
-            
-            if(is_array($content)){
-                if (isset($content[0]['PicUrl'])){
-                    $result = $this->transmitNews($object, $content);
-                }else if (isset($content['MusicUrl'])){
-                    $result = $this->transmitMusic($object, $content);
-                }
-            }else{
-                $result = $this->transmitText($object, $content);
-            }
-        }
+
+       $content= file_get_contents("http://www.xiaohuangji.com/web.php?callback=jQuery17101399328545667231_1404833649724&para=".$keyword."&_=".time());
+ $this->logger($content);
+         $content= str_replace("test(\"", "", $content);
+         $content  = str_replace("\")", "", $content);
+        $content= $this->unicode_decode($content) ;
+    $this->logger($content);
+
+ $textTpl = "<xml>
+     <ToUserName><![CDATA[%s]]></ToUserName>
+     <FromUserName><![CDATA[%s]]></FromUserName>
+     <CreateTime>%s</CreateTime>
+     <MsgType><![CDATA[%s]]></MsgType>
+     <Content><![CDATA[%s]]></Content>
+     <FuncFlag>0</FuncFlag>
+ </xml>";
+ $result = sprintf($textTpl, $cuser, $object->ToUserName, time(), "text", $content);
+ $this->logger($result);
+
 
         return $result;
+
     }
 
     //接收图片消息
@@ -258,6 +262,7 @@ class wechatCallbackapiTest
 <CreateTime>%s</CreateTime>
 <MsgType><![CDATA[text]]></MsgType>
 <Content><![CDATA[%s]]></Content>
+ <FuncFlag>0</FuncFlag>
 </xml>";
         $result = sprintf($xmlTpl, $object->FromUserName, $object->ToUserName, time(), $content);
         return $result;
