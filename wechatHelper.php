@@ -135,7 +135,8 @@ public function getPicByUID($wexinid){
        	     public function setNoPrintPics($wexinid)
           {
                            $updatestr="update pics SET isprint=1 WHERE uid='".$wexinid."'";;
-
+                              echo  $updatestr;
+                              exit;
                   			  $result=$this->conn->ExecuteSQL($sql);
                   			  return $result;
         }
