@@ -91,7 +91,7 @@ public function getPicByUID($wexinid){
 	     $updatestr="update pics SET ready=".$ready.",isprint=0,picurl = '".$picurl."' WHERE uid='".$wexinid."'";;
          $result=$this->conn->ExecuteSQL($querystr);
 
-                        if(count($result)){
+                        if(count($result)>1){
                                  //更新
                                $this->conn->ExecuteSQL($updatestr);
                         } else{
