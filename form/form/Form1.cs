@@ -17,7 +17,22 @@ namespace form
         {
             InitializeComponent();
         }
+        private string ReadConfig()
+        {
+            FileStream fs = new FileStream(AppDomain.CurrentDomain.BaseDirectory+"\\config.txt", FileMode.Open);
 
+            StreamReader sr = new StreamReader(fs);
+
+            var readLine = sr.ReadLine();
+            sr.Close();
+            fs.Close();
+            if (readLine != null) return readLine.Trim().Split(',')[0];
+            else
+            {
+                return "";
+            }
+           
+        }
         private string GetCode()
         {
             int number;
@@ -43,6 +58,7 @@ namespace form
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            webBrowser1.Url = new Uri(ReadConfig());
             label1.Text = GetCode();
         }
 
